@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+     <FrameLayout android:id="@+id/frameLayout4" android:layout_height="wrap_content" android:layout_width="match_parent">
+                        <ImageView android:background="@drawable/module_row" android:adjustViewBounds="true" android:id="@+id/invendback" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_gravity="center_horizontal"></ImageView>
+                        <ImageView android:paddingLeft="15dp" android:layout_gravity="center_vertical|center_horizontal|left" android:id="@+id/promoteMe1" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+                        <ImageView android:paddingLeft="15dp" android:layout_gravity="center_vertical|center_horizontal|left" android:src="@drawable/small_pic_overlay" android:id="@+id/small_pic_overlay" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+                        <TextView android:text="Loading..." android:id="@+id/promoteName1" android:textColor="#333333" android:layout_gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content" android:paddingLeft="55dp"></TextView>
+                        <ImageButton android:layout_marginRight="20dp" android:src="@drawable/inviteselector" android:id="@+id/invPromote1" android:background="@drawable/invite_buttonx" android:layout_gravity="center_vertical|right" android:layout_height="wrap_content" android:textColor="#999" android:layout_width="wrap_content"></ImageButton>
+                        <ImageButton android:layout_gravity="center_vertical|clip_vertical|right" android:src="@drawable/endorse_selector" android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/endorse_button" android:layout_marginRight="95dp" android:id="@+id/endorse1"></ImageButton>
+                    </FrameLayout>
+</LinearLayout>

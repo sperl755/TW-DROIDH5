@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:background="#FFF"
+              android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal">
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Take a photo"  android:id="@+id/takePhoto" android:layout_gravity="center_horizontal"></Button>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select from Gallery" android:id="@+id/selectGallery" android:layout_gravity="center_horizontal"></Button>
+    
+</LinearLayout>
