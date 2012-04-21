@@ -88,8 +88,8 @@ public class StaffActivity extends Activity  implements LocationListener {
     private final static int CAMERA_REQUEST_CODE = 1;
     private static final int SELECT_PHOTO = 100;
 	  public static final int    GALLERY_REQUEST_CODE   = 2;
-    private ArrayList<String> topics = new ArrayList<String>(3);
-    private ArrayList<String> topids = new ArrayList<String>(3);
+    public static ArrayList<String> topics = new ArrayList<String>(3);
+    public static ArrayList<String> topids = new ArrayList<String>(3);
     private File directory;
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -599,7 +599,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	        }
 	    }
 	 
-	 private class PostImage extends AsyncTask<Void, Void, Void>
+	 public class PostImage extends AsyncTask<Void, Void, Void>
 	    {
 
 	        ProgressDialog mProgressDialog;

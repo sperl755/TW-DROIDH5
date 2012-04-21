@@ -435,14 +435,15 @@ containing a value of this type.
         public static final int row=0x7f030012;
         public static final int search=0x7f030013;
         public static final int searchtab=0x7f030014;
-        public static final int staffmaps=0x7f030015;
-        public static final int stafftofriend=0x7f030016;
-        public static final int staffyourself=0x7f030017;
-        public static final int syourself=0x7f030018;
-        public static final int tabs_bg=0x7f030019;
-        public static final int testhtml=0x7f03001a;
-        public static final int testpulllist=0x7f03001b;
-        public static final int userprofile=0x7f03001c;
+        public static final int shareimage=0x7f030015;
+        public static final int staffmaps=0x7f030016;
+        public static final int stafftofriend=0x7f030017;
+        public static final int staffyourself=0x7f030018;
+        public static final int syourself=0x7f030019;
+        public static final int tabs_bg=0x7f03001a;
+        public static final int testhtml=0x7f03001b;
+        public static final int testpulllist=0x7f03001c;
+        public static final int userprofile=0x7f03001d;
     }
     public static final class raw {
         public static final int mystore=0x7f040000;
