@@ -99,6 +99,17 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    proglin = (LinearLayout)this.findViewById(R.id.proglin);
 		    //startActivityForResult(1,1);
 
+		    Intent intent = getIntent();
+		    String action = intent.getAction();
+		    String type = intent.getType();
+		    Log.d("TAG","INTENT ACTION TYPE: "+action);
+		    Log.d("TAG","INTENT  TYPE: "+type);
+		    if (Intent.ACTION_SEND.equals(action) && type != null && type.startsWith("image/")) {
+		        	handleSendImage(intent); // Handle single image being sent
+		    }
+
+		    
+		    
 		    directory = new File(Environment.getExternalStorageDirectory()+File.separator+"Talentwire");
 		    directory.mkdirs();
 		    
@@ -269,6 +280,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			super.onPause();
 			locationManager.removeUpdates(this);
 		}
+		
 
 		@Override
 		public void onLocationChanged(Location location) {
@@ -309,6 +321,25 @@ public class StaffActivity extends Activity  implements LocationListener {
 				return true;
 			}
 		}
+	 
+	 
+
+	 private void handleSendImage(Intent intent) {
+	     Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+	     if (imageUri != null) {
+	         try {
+				Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+				customDialog(bitmap);
+				Log.d("TAG","Handling the URI and starting custom dialog");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+	     }
+	 }
+	 
 	 public void parseSubs(String stuff){
 			JSONArray jresult;
 			JSONObject json_data = null;
@@ -477,7 +508,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 				}
 		    	}
 		            Bitmap bm = BitmapFactory.decodeFile(directory+"/test.png");
-		            Log.d("TAG","Still in staffactivity, image size is:"+ bm.getByteCount());
+		            Log.d("TAG","Still in staffactivity, image size is:"+ StaffTasks.getSizeInBytes(bm));
 					customDialog(bm);
 
 				}

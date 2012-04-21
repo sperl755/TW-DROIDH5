@@ -241,10 +241,21 @@ public class StaffTasks{
 
 	            } 
 	    }
+	    
+	    public static long getSizeInBytes(Bitmap bitmap) {
+	    	int SDK_INT = android.os.Build.VERSION.SDK_INT;
+
+	        if(SDK_INT>=12) {
+	            return bitmap.getByteCount();
+	        } else {
+	            return bitmap.getRowBytes() * bitmap.getHeight();
+	        }
+	    }
+	    
 
 	    public static void executeMultipartPost(Bitmap image, String topicid, String topost, Context c) throws Exception {
 	    		String boundary = "------WebKitFormBoundary4QuqLuM1cE5lMwCy";
-	            Log.d("TAG","Now in StaffTasks, image size is:"+ image.getByteCount());
+	            Log.d("TAG","Now in StaffTasks, image size is:"+ getSizeInBytes(image));
 
 	    		ByteArrayOutputStream bos = new ByteArrayOutputStream();
     			image.compress(CompressFormat.JPEG, 45, bos);
@@ -304,7 +315,7 @@ public class StaffTasks{
 
         			}else {
         				String image_part_1 = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"richmedia_type\"\r\n\r\n" + "0\r\n");
-        				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + image.getByteCount() + topic_id.length())));
+        				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + topic_id.length())));
         				feed_connection.setRequestProperty("Content-Length NO IMG", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length())));
         				ByteArrayOutputStream form_output 	= new ByteArrayOutputStream();
             			OutputStream form_stream 			= new BufferedOutputStream(feed_connection.getOutputStream());
