@@ -33,14 +33,19 @@ import android.widget.Toast;
 public class ShareImage extends Activity {
 	private ImageView image;
 	private Bitmap bitmap;
+	private ArrayAdapter adapter;
+	private Spinner catselect;
 
     public static ArrayList<String> topics = new ArrayList<String>(3);
     public static ArrayList<String> topids = new ArrayList<String>(3);
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        
+	        if (StaffActivity.topids.size()!=0){
 			topids = StaffActivity.topids;
 			topics = StaffActivity.topics;
+	        }
 	       
 	        
 	        setContentView(R.layout.shareimage);
@@ -48,8 +53,10 @@ public class ShareImage extends Activity {
 	        final ImageView imageView = (ImageView) this.findViewById(R.id.image);
 	        final EditText postbox = (EditText) this.findViewById(R.id.postbox);
 	        ImageButton share = (ImageButton) this.findViewById(R.id.share);
-	        final Spinner catselect = (Spinner) this.findViewById(R.id.catselect);
+	        catselect = (Spinner) this.findViewById(R.id.catselect);
 	        image = (ImageView)this.findViewById(R.id.image);
+	        adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
+	        catselect.setAdapter(adapter);
 
 
 		    Intent intent = getIntent();
@@ -76,15 +83,10 @@ public class ShareImage extends Activity {
 		    
 
 	        
-	       
-	        
-	        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
-	        catselect.setAdapter(adapter);
-	        if (topics.size()!=0){
-	        for(int i=0; i<topics.size();i++){
-	        	adapter.add(topics.get(i));
-	        }
-	        }
+	       runArrayAdapter();
+		   	
+		   	     
+	        //adapter.
 	        share.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 	            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),bitmap);
@@ -93,6 +95,16 @@ public class ShareImage extends Activity {
 	        });
 		    }
 		 }
+	 		
+	 private void runArrayAdapter(){
+	        if (topics.size()!=0){
+	        for(int i=0; i<topics.size();i++){
+	        	adapter.add(topics.get(i));
+	        }
+	        }
+	 }
+	 
+	 
 		    private void postImage(String topost, String topicid, Bitmap f){
 			    PostImage post = new PostImage(f,topost,topicid);
 			    post.execute();
@@ -172,6 +184,7 @@ public class ShareImage extends Activity {
 						JSONArray jresult;
 						JSONObject json_data = null;
 						JSONObject json_data_level1 = null;
+						Log.d("TAG","In parse subs share image");
 						  JSONTokener tokener = new JSONTokener(stuff);
 				        try {
 							jresult = new JSONArray(tokener);
@@ -190,6 +203,7 @@ public class ShareImage extends Activity {
 				        } catch (JSONException e) {
 							e.printStackTrace();
 						}
+				        runArrayAdapter();
 					}
 
 }
