@@ -121,9 +121,11 @@ public class StaffTasks{
 	}
 	
 	public static String getSubs(Context c) {
+		SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
+        String key = prefs.getString("staffkey", null);
 		subs = null;
 		try {
-		URI url = new URI("https://talentwire.me/apis/user/"+staffkey+"/get/subscriptions");
+		URI url = new URI("https://talentwire.me/apis/user/"+key+"/get/subscriptions");
 		
 	    HttpGet get = new HttpGet(url);
 	    HttpClient client = new MyHttpClient(c);
