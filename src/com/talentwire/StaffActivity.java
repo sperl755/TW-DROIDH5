@@ -23,6 +23,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -44,9 +47,11 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.HttpAuthHandler;
@@ -99,6 +104,8 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    proglin = (LinearLayout)this.findViewById(R.id.proglin);
 		    //startActivityForResult(1,1);
 
+	
+		    
 		    Intent intent = getIntent();
 		    String action = intent.getAction();
 		    String type = intent.getType();
@@ -250,6 +257,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 	            public void onClick(View v) {
 	 
 	            	customDialog(yourSelectedImage);
+	        	    /*
+	    		     * Notiication Testing
+	    		     */
+	    		    
+	                startNotification();
 	            }
 	        });
 			
@@ -268,6 +280,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 	            }
 	        });
 			}
+	 
+	 	private void startNotification(){
+	 		createNotification();
+	 	}
+	 
 		@Override
 		protected void onResume() {
 			super.onResume();
@@ -322,7 +339,22 @@ public class StaffActivity extends Activity  implements LocationListener {
 			}
 		}
 	 
-	 
+	 public void createNotification() {
+			NotificationManager notificationManager = (NotificationManager) 
+						getSystemService(NOTIFICATION_SERVICE);
+			Notification notification = new Notification(R.drawable.icon,
+					"A new notification", System.currentTimeMillis());
+			// Hide the notification after its selected
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+			Intent intent = new Intent(this, NotificationReceiver.class);
+			PendingIntent activity = PendingIntent.getActivity(this, 0, intent, 0);
+			notification.setLatestEventInfo(this, "This is the title",
+					"This is the text", activity);
+			notification.number += 1;
+			notificationManager.notify(0, notification);
+
+		}
 
 	 private void handleSendImage(Intent intent) {
 	     Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
@@ -369,16 +401,21 @@ public class StaffActivity extends Activity  implements LocationListener {
 
 		if(selected!=null){
         dialog.setContentView(R.layout.customalert);
+        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+
 		} else {
 		dialog.setContentView(R.layout.customaletertnopic);
+        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		}
+		dialog.getWindow().setGravity(Gravity.TOP);
+		
         dialog.setTitle("Share");
         final EditText postbox = (EditText) dialog.findViewById(R.id.postbox);
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
         final Spinner catselect = (Spinner) dialog.findViewById(R.id.catselect);
-        
+
         if (selected!=null){
         	image.setImageBitmap(selected);
         } else {

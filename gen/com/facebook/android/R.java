@@ -248,9 +248,9 @@ containing a value of this type.
         public static final int connectionsButton=0x7f050011;
         public static final int cornerleft=0x7f05004b;
         public static final int cornerright=0x7f05004c;
-        public static final int dashProg=0x7f050038;
-        public static final int dashframe=0x7f050039;
-        public static final int dashproglin=0x7f050037;
+        public static final int dashProg=0x7f050039;
+        public static final int dashframe=0x7f05003a;
+        public static final int dashproglin=0x7f050038;
         public static final int editSearch=0x7f050063;
         public static final int editText1=0x7f050046;
         public static final int eduTable=0x7f0500cd;
@@ -310,7 +310,7 @@ containing a value of this type.
         public static final int layout_root=0x7f050030;
         public static final int layout_zoom=0x7f050091;
         public static final int linearLayout1=0x7f050033;
-        public static final int linearLayout2=0x7f05003a;
+        public static final int linearLayout2=0x7f050037;
         public static final int linearLayout3=0x7f050073;
         public static final int linearLayout5=0x7f05000e;
         public static final int linearLayout6=0x7f050009;
@@ -434,19 +434,20 @@ containing a value of this type.
         public static final int profilerow=0x7f030010;
         public static final int pull_to_refresh_header=0x7f030011;
         public static final int register=0x7f030012;
-        public static final int row=0x7f030013;
-        public static final int search=0x7f030014;
-        public static final int searchtab=0x7f030015;
-        public static final int shareimage=0x7f030016;
-        public static final int sharetest=0x7f030017;
-        public static final int staffmaps=0x7f030018;
-        public static final int stafftofriend=0x7f030019;
-        public static final int staffyourself=0x7f03001a;
-        public static final int syourself=0x7f03001b;
-        public static final int tabs_bg=0x7f03001c;
-        public static final int testhtml=0x7f03001d;
-        public static final int testpulllist=0x7f03001e;
-        public static final int userprofile=0x7f03001f;
+        public static final int result=0x7f030013;
+        public static final int row=0x7f030014;
+        public static final int search=0x7f030015;
+        public static final int searchtab=0x7f030016;
+        public static final int shareimage=0x7f030017;
+        public static final int sharetest=0x7f030018;
+        public static final int staffmaps=0x7f030019;
+        public static final int stafftofriend=0x7f03001a;
+        public static final int staffyourself=0x7f03001b;
+        public static final int syourself=0x7f03001c;
+        public static final int tabs_bg=0x7f03001d;
+        public static final int testhtml=0x7f03001e;
+        public static final int testpulllist=0x7f03001f;
+        public static final int userprofile=0x7f030020;
     }
     public static final class raw {
         public static final int mystore=0x7f040000;

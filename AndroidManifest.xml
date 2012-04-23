@@ -28,9 +28,9 @@
             <data android:mimeType="image/*" />
         	</intent-filter> 
 		</activity>
-		<activity android:name=".JobApply" android:theme="@android:style/Theme.NoTitleBar"       			  android:screenOrientation="portrait"
+		<activity android:name=".NotificationReceiver" android:theme="@android:style/Theme.NoTitleBar"       			  android:screenOrientation="portrait"
 		 ></activity>
-		<activity android:name=".DiscussJobs" ></activity>
+		<activity android:name=".CreateNotification" ></activity>
 		<activity android:name=".MessageInbox" android:theme="@android:style/Theme.NoTitleBar"       			  android:screenOrientation="portrait"
 		 ></activity>
 		<activity android:name=".SearchMaps" android:windowSoftInputMode="adjustResize" ></activity>
