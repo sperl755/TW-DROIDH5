@@ -367,9 +367,12 @@ public class StaffActivity extends Activity  implements LocationListener {
 	 public void customDialog(final Bitmap selected){
 		 final Dialog dialog = new Dialog(this);
 
+		if(selected!=null){
         dialog.setContentView(R.layout.customalert);
+		} else {
+		dialog.setContentView(R.layout.customaletertnopic);
+		}
         dialog.setTitle("Share");
-        final ImageView imageView = (ImageView) dialog.findViewById(R.id.image);
         final EditText postbox = (EditText) dialog.findViewById(R.id.postbox);
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
@@ -378,12 +381,14 @@ public class StaffActivity extends Activity  implements LocationListener {
         
         if (selected!=null){
         	image.setImageBitmap(selected);
+        } else {
+        	Log.d("TAG","Custom Dialog with no image");
         }
         
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
         catselect.setAdapter(adapter);
         if (topics.size()!=0){
-        	for(int i=0; i<topics.size();i++){
+        	for(int i=0; i<3;i++){
         		adapter.add(topics.get(i));
         		}
         	} else {
