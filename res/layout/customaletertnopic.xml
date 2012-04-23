@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout_root"
+              android:orientation="vertical"
+              android:background="#FFF"
+              android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <EditText android:maxLength="200" android:id="@+id/postbox" android:paddingBottom="40dp" android:layout_width="fill_parent" android:minWidth="275dp" android:layout_height="120dp"></EditText>
+    <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout2" android:layout_width="match_parent" android:orientation="vertical">
+        <FrameLayout android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="match_parent">
+            <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/photo_button" android:src="@drawable/photo_button" android:id="@+id/camera"></ImageButton>
+            <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/share" android:id="@+id/share" android:layout_gravity="right"></ImageButton>
+            <Spinner android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/catselect" android:background="@drawable/categoryselector" android:layout_gravity="center_horizontal"></Spinner>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>
