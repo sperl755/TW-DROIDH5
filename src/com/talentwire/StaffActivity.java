@@ -383,10 +383,13 @@ public class StaffActivity extends Activity  implements LocationListener {
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
         catselect.setAdapter(adapter);
         if (topics.size()!=0){
-        for(int i=0; i<topics.size();i++){
-        	adapter.add(topics.get(i));
+        	for(int i=0; i<topics.size();i++){
+        		adapter.add(topics.get(i));
+        		}
+        	} else {
+        	Toast.makeText(getApplicationContext(), "Please wait, loading subscriptions", 0).show();
         }
-        }
+        
 
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

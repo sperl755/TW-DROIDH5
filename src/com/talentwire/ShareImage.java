@@ -42,11 +42,16 @@ public class ShareImage extends Activity {
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        
+	        /*
+	         * Populate topics list if already fetch
+	         */
+	        
 	        if (StaffActivity.topids.size()!=0){
-			topids = StaffActivity.topids;
-			topics = StaffActivity.topics;
+	        for (int i=0;i<3;i++){
+	        	topids.add(StaffActivity.topids.get(i));
+	        	topics.add(StaffActivity.topics.get(i));
+	        	}
 	        }
-	       
 	        
 	        setContentView(R.layout.shareimage);
 
@@ -98,7 +103,7 @@ public class ShareImage extends Activity {
 	 		
 	 private void runArrayAdapter(){
 	        if (topics.size()!=0){
-	        for(int i=0; i<topics.size();i++){
+	        for(int i=0; i<3;i++){
 	        	adapter.add(topics.get(i));
 	        }
 	        }
@@ -159,26 +164,32 @@ public class ShareImage extends Activity {
 				}
 				private class AsyncSubs extends AsyncTask<Void, Void, Void>
 			    {
-					Dialog dialog = new Dialog(ShareImage.this);
+				    private ProgressDialog dialog;
 
-			        @Override
-			        protected void onPostExecute(Void result) {
-			        	dialog.dismiss();
-			        }
-
-			    	
+				
 
 					@Override
 			        protected void onPreExecute() {
-						dialog.show();
-						dialog.setTitle("Please wait");
-			        }
+				        dialog = ProgressDialog.show(ShareImage.this, "Please wait", "Fetching your subscriptions", true);
 
-			        @Override
+			        }
+					
+				    @Override
 			        protected Void doInBackground(Void... params) {
 						parseSubs(StaffTasks.getSubs(getApplicationContext()));
 			            return null;
 			        }
+				    
+			        @Override
+			        protected void onPostExecute(Void result) {
+			        	dialog.dismiss();
+				        runArrayAdapter();
+			        }
+
+			    	
+
+
+			       
 			    }
 				 public void parseSubs(String stuff){
 						JSONArray jresult;
@@ -203,7 +214,6 @@ public class ShareImage extends Activity {
 				        } catch (JSONException e) {
 							e.printStackTrace();
 						}
-				        runArrayAdapter();
 					}
 
 }
