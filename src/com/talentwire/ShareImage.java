@@ -53,7 +53,7 @@ public class ShareImage extends Activity {
 	        	}
 	        }
 	        
-	        setContentView(R.layout.shareimage);
+	        setContentView(R.layout.sharetest);
 
 	        final ImageView imageView = (ImageView) this.findViewById(R.id.image);
 	        final EditText postbox = (EditText) this.findViewById(R.id.postbox);
@@ -90,7 +90,15 @@ public class ShareImage extends Activity {
 	        
 	       runArrayAdapter();
 		   	
-		   	     
+		   postbox.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	if (postbox.getText().toString().equals("Describe your image..")){
+		            	postbox.setText("");
+	            	}
+            }
+        });
+	    	     
+	       
 	        //adapter.
 	        share.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
