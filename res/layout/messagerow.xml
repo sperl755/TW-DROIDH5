@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/messagelayout1" android:paddingLeft="10dp" android:paddingRight="10dp">
-                        <ImageView android:background="@drawable/module_row" android:adjustViewBounds="true" android:id="@+id/inboxrowbg" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_gravity="center_horizontal"></ImageView>
-                    <TextView android:text="Loading....." android:textColor="#666666" android:textSize="11dp" android:layout_height="wrap_content" android:paddingTop="10dp" android:layout_width="wrap_content" android:paddingLeft="20dp" android:layout_marginRight="30dp" android:id="@+id/messagedesc1"></TextView>
-                    <Button android:background="@drawable/arrow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical|right" android:layout_marginRight="20dp" android:id="@+id/messageButton1"></Button>
-                </FrameLayout>
