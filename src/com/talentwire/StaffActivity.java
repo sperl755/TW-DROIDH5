@@ -416,6 +416,15 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
         final Spinner catselect = (Spinner) dialog.findViewById(R.id.catselect);
 
+        postbox.setText("What are you working on?");
+        postbox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	if (postbox.getText().toString().equals("What are you working on?")){
+            		postbox.setText("");
+            	}
+            }
+        });
+        
         if (selected!=null){
         	image.setImageBitmap(selected);
         } else {
