@@ -8,20 +8,19 @@
         <activity android:name=".StaffActivity"
       			  android:screenOrientation="portrait"
                   android:label="@string/app_name"
-                  android:theme="@android:style/Theme.NoTitleBar"
-         
-                  >
+                  android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
 		  </intent-filter> 
-      
         </activity>
-    <receiver android:name="com.example.ServiceAutoStarter">
-        <intent-filter>
-            <action android:name="android.intent.action.BOOT_COMPLETED" />
-        </intent-filter>
-  </receiver>    
+        		<service android:name=".NotifyService" />
+        
+ <receiver android:name=".ServiceAutoStarter">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
 	<activity android:name=".Register" ></activity>
 		<activity android:name=".FacebookActivity" android:noHistory="true"></activity>
 		<activity android:name=".HomePage"></activity>
@@ -74,6 +73,7 @@ android:windowSoftInputMode="adjustResize" android:screenOrientation="portrait" 
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
 <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"></uses-permission>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
 
 
 

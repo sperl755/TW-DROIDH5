@@ -282,7 +282,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			}
 	 
 	 	private void startNotification(){
-	 		createNotification();
+	 		//createNotification();
 	 	}
 	 
 		@Override
@@ -339,22 +339,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			}
 		}
 	 
-	 public void createNotification() {
-			NotificationManager notificationManager = (NotificationManager) 
-						getSystemService(NOTIFICATION_SERVICE);
-			Notification notification = new Notification(R.drawable.icon,
-					"A new notification", System.currentTimeMillis());
-			// Hide the notification after its selected
-			notification.flags |= Notification.FLAG_AUTO_CANCEL;
-
-			Intent intent = new Intent(this, NotificationReceiver.class);
-			PendingIntent activity = PendingIntent.getActivity(this, 0, intent, 0);
-			notification.setLatestEventInfo(this, "This is the title",
-					"This is the text", activity);
-			notification.number += 1;
-			notificationManager.notify(0, notification);
-
-		}
+	
 
 	 private void handleSendImage(Intent intent) {
 	     Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
