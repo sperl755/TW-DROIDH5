@@ -6,7 +6,7 @@
   android:layout_height="match_parent"
   android:background="#000">
     <FrameLayout android:id="@+id/frameLayout1" android:layout_width="match_parent" android:layout_height="match_parent">
-        <ImageView android:id="@+id/imageView1" android:src="@drawable/bdrop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:cropToPadding="true" android:scaleType="center" android:layout_gravity="center_vertical|center_horizontal"></ImageView>
-        <ImageButton android:src="@drawable/facebook_button" android:background="@drawable/login_button2x" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal"></ImageButton>
+        <ImageView android:id="@+id/imageView1" android:src="@drawable/bdrop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:cropToPadding="true" android:scaleType="center" android:layout_gravity="center_vertical|center_horizontal|top"></ImageView>
+        <ImageButton android:src="@drawable/facebook_button" android:background="@drawable/login_button2x" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:id="@+id/loginbutton"></ImageButton>
     </FrameLayout>
 </LinearLayout>

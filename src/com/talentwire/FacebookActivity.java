@@ -31,8 +31,10 @@ public class FacebookActivity extends Activity {
         	Log.d("TAG", "Facebook Authentification Complete");
             facebook.setAccessToken(access_token);
             facebook.setAccessExpires(expires);
-			startActivity(new Intent(FacebookActivity.this, StaffActivity.class));
-			StaffActivity.facebooked="bannana";
+        	Intent i = new Intent(getApplicationContext(), StaffActivity.class);
+        	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        	startActivity(i);
+            StaffActivity.facebooked="bannana";
         }
 
 
@@ -42,8 +44,10 @@ public class FacebookActivity extends Activity {
             public void onComplete(Bundle values) {
             	Log.d("TAG", "Facebook Authentification Complete");
             	saveToken();
-            	startActivity(new Intent(FacebookActivity.this, StaffActivity.class));
-    			StaffActivity.facebooked="bannana";
+            	Intent i = new Intent(getApplicationContext(), StaffActivity.class);
+            	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            	startActivity(i);
+            	StaffActivity.facebooked="bannana";
             }
             
             public void onFacebookError(FacebookError error) {}

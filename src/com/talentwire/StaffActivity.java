@@ -109,7 +109,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    proglin = (LinearLayout)this.findViewById(R.id.proglin);
 		    //startActivityForResult(1,1);
 
-	
+		    if (facebooked.equals("nd")){
+	        	Intent i = new Intent(getApplicationContext(), Login.class);
+	        	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+	        	startActivity(i);
+	        } else {
 		    
 		    Intent intent = getIntent();
 		    String action = intent.getAction();
@@ -125,11 +129,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    directory = new File(Environment.getExternalStorageDirectory()+File.separator+"Talentwire");
 		    directory.mkdirs();
 		    
-	        if (facebooked.equals("nd")){
-	        	Intent i = new Intent(getApplicationContext(), FacebookActivity.class);
-	        	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        	startActivity(i);
-	        } else {
+
 	        
 	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
 			final String fbtoken =  prefs.getString("access_token", null); 
