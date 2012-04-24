@@ -4,6 +4,7 @@ package com.talentwire;
 
 import java.io.File;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -111,8 +112,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 
 		    if (facebooked.equals("nd")){
 	        	Intent i = new Intent(getApplicationContext(), Login.class);
-	        	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+	        	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 	        	startActivity(i);
+	        	finish();
 	        } else {
 		    
 		    Intent intent = getIntent();
@@ -238,6 +240,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			profButton = (ImageButton)this.findViewById(R.id.profButton);
 			profButton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
+	            	if (StaffTasks.firstname!=null){
 	            	Log.d("TAG", StaffTasks.firstname+StaffTasks.lastname);
 	            	String userprofile = "https://www.talentwire.me/users/";
 	            	userprofile = userprofile.concat(StaffTasks.firstname);
@@ -247,6 +250,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	            	Log.d("TAG",userprofile);
 	            	mWebView.loadUrl(userprofile);
 	            	checkLoading();
+	            	}
 	            	}
 	        });
 			
@@ -267,13 +271,14 @@ public class StaffActivity extends Activity  implements LocationListener {
 	    		     * Notiication Testing
 	    		     */
 	    		    
-	                startNotification();
+	                //startNotification();
 	            }
 	        });
 			
 			msgButton = (ImageButton)this.findViewById(R.id.msgButton);
 			msgButton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
+	            	if (StaffTasks.firstname!=null){
 	            	String messages = "https://www.talentwire.me/";
 	            	messages = messages.concat(StaffTasks.firstname);
 	            	messages = messages.concat("-");
@@ -283,6 +288,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	            	Log.d("TAG",messages);
 	            	mWebView.loadUrl(messages);
 	            	checkLoading();
+	            	}
 	            }
 	        });
 			}
@@ -430,6 +436,9 @@ public class StaffActivity extends Activity  implements LocationListener {
         		}
         	} else {
         	Toast.makeText(getApplicationContext(), "Please wait, loading subscriptions", 0).show();
+        	AsyncSubs subs = new AsyncSubs();
+        	subs.execute();
+        	Log.d("TAG","No subs, getting them async");
         }
         
 
