@@ -8,9 +8,11 @@ import org.json.JSONTokener;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
@@ -37,7 +39,8 @@ public class NotifyService extends Service {
    	    StaffTasks.getInfo(fbtoken, getApplicationContext());
 		}
 		//checkMessages();
-   	    
+   	    AsyncMessage mess = new AsyncMessage();
+   	    mess.execute();
 	    
 	    }
 	    
@@ -151,4 +154,32 @@ public class NotifyService extends Service {
 
 	            }
 	        }
+	     
+	     private class AsyncMessage extends AsyncTask<Void, Void, Void>
+		    {
+			 //   private ProgressDialog dialog;
+
+			
+
+				@Override
+		        protected void onPreExecute() {
+			        //dialog = ProgressDialog.show(ShareImage.this, "Please wait", "Fetching your subscriptions", true);
+
+		        }
+				
+			    @Override
+		        protected Void doInBackground(Void... params) {
+			    	if (StaffTasks.donelogin!=null){
+             	    parseInbox(StaffTasks.getMessages(getApplicationContext()));
+			    	}
+             	    return null;
+		        }
+			    
+		        @Override
+		        protected void onPostExecute(Void result) {
+		        	//dialog.dismiss();
+			        //runArrayAdapter();
+		        }
+		       
+		    }
 }

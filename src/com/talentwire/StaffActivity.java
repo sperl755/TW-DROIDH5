@@ -291,6 +291,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 	            	}
 	            }
 	        });
+			/*
+			 * Bind service
+			 */
+			doBindService();
+			
 			}
 	 
 	 	private void startNotification(){
@@ -311,6 +316,31 @@ public class StaffActivity extends Activity  implements LocationListener {
 		}
 		
 
+		private ServiceConnection mConnection = new ServiceConnection() {
+
+			public void onServiceConnected(ComponentName className, IBinder binder) {
+				s = ((NotifyService.LocalBinder) binder).getService();
+				Toast.makeText(StaffActivity.this, "Connected",
+						Toast.LENGTH_SHORT).show();
+			}
+
+			public void onServiceDisconnected(ComponentName className) {
+				s = null;
+			}
+		};
+
+
+		void doBindService() {
+			bindService(new Intent(this, NotifyService.class), mConnection,
+					Context.BIND_AUTO_CREATE);
+		}
+
+		public void showServiceData(View view) {
+			if (s != null) {
+			}
+		}
+		
+		
 		@Override
 		public void onLocationChanged(Location location) {
 			double lat = (double) (location.getLatitude());

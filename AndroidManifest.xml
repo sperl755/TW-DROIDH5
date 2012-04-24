@@ -22,12 +22,12 @@
         </activity>
         		<service android:name=".NotifyService" />
         
- <receiver android:name=".ServiceAutoStarter">
+ <receiver android:name=".ServiceScheduler">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 			</intent-filter>
 		</receiver>
-		 <receiver android:name=".ServiceScheduler">
+		 <receiver android:name=".ServiceAutoStarter">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 			</intent-filter>
