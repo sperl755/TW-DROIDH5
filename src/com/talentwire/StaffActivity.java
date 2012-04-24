@@ -126,8 +126,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    directory.mkdirs();
 		    
 	        if (facebooked.equals("nd")){
-	        	startActivity(new Intent(StaffActivity.this, FacebookActivity.class));
-	        	 finish();
+	        	Intent i = new Intent(getApplicationContext(), FacebookActivity.class);
+	        	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        	startActivity(i);
 	        } else {
 	        
 	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
