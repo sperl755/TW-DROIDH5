@@ -20,6 +20,7 @@ import org.json.JSONTokener;
 
 import com.facebook.android.Facebook;
 import com.handmark.pulltorefresh.library.PullToRefreshWebView;
+import com.talentwire.NotifyService.LocalBinder;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -27,8 +28,10 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -43,6 +46,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
@@ -81,6 +85,7 @@ public class StaffActivity extends Activity  implements LocationListener {
     private int counter=0;
     private final Handler uiHandler=new Handler();
     private boolean isUpdateRequired=false;
+	private NotifyService s;
     private ImageButton profButton;
     private ImageButton msgButton;
     private ImageButton talentwire;
@@ -122,7 +127,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    
 	        if (facebooked.equals("nd")){
 	        	startActivity(new Intent(StaffActivity.this, FacebookActivity.class));
-	        	 finishActivity(counter);
+	        	 finish();
 	        } else {
 	        
 	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
@@ -723,7 +728,6 @@ public class StaffActivity extends Activity  implements LocationListener {
 	 
 	 
 	 
-	 
 	  @Override
 	    public boolean onKeyDown(int keyCode, KeyEvent event)  {
 	        if (  Integer.valueOf(android.os.Build.VERSION.SDK) < 7 //Instead use android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
@@ -740,6 +744,10 @@ public class StaffActivity extends Activity  implements LocationListener {
 	    @Override
 	    public void onBackPressed() {
 	        mWebView.goBack();
+	        if (mWebView.getUrl().contains("dashboard")){
+	        	Log.d("TAG","On the dash URL is "+mWebView.getUrl());
+	        	finish();
+	        }
 	    	return;
 	    }
 }

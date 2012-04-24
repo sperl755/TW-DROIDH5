@@ -10,20 +10,64 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class NotifyService extends Service {
 
 	    private NotificationManager mNM;
+	    private final Handler uiHandler=new Handler();
+	    private boolean isUpdateRequired=false;
+		//private final IBinder mBinder = new MyBinder();
 
 
 	    @Override
 	    public void onCreate() {
 	    mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 	    Log.d("TAG","Notify service has been started");
-	    parseInbox(StaffTasks.getMessages(getApplicationContext()));
+        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		final String fbtoken =  prefs.getString("access_token", null); 
+		//AsyncStaffInfo async = new AsyncStaffInfo(this); 
+   	    //async.execute(fbtoken);
+		if (prefs.getString("staffkey", null)==null){
+   	    StaffTasks.getInfo(fbtoken, getApplicationContext());
+		}
+		//checkMessages();
+   	    
+	    
+	    }
+	    
+	    public void checkMessages(){
+		   	 try{
+		         new Thread(){
+		             public void run() {
+		                 initializeApp();
+		                 uiHandler.post( new Runnable(){
+		                     @Override
+		                     public void run() {
+		                         if(isUpdateRequired){
+		                         }else{
+		                        	Log.d("TAG","Getting the messages from the server task");
+		                     	    parseInbox(StaffTasks.getMessages(getApplicationContext()));
+		                         }
+		                     }
+		                 } );
+		             }
+		             public void initializeApp(){
+		           	  while (StaffTasks.donelogin==null) {
+		           		  try {
+								sleep(1);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+		           	  }
+		             }
+		     }.start();
+		     }catch (Exception e) {}
 	    }
 	    //if (triggerSatisfied) showNotification();
 	    //}
@@ -47,7 +91,7 @@ public class NotifyService extends Service {
 		          String sender_name = json_data.getString("sender_name");
 		          String created_at = json_data.getString("created_at");
 		          String id = json_data.getString("id");
-		          
+		          showNotification(subject,sender_name);
 		          //setTexts(body, subject, sender_name,id, i, jresult.length());
 				} 
 		  		} catch (JSONException e) {
@@ -61,6 +105,8 @@ public class NotifyService extends Service {
 
 	    @Override
 	    public int onStartCommand(Intent intent, int flags, int startId) {
+			checkMessages();
+	    	Log.d("TAG","IN onStartCommand SECTION");
 	        return START_STICKY;
 	    }
 
@@ -73,32 +119,36 @@ public class NotifyService extends Service {
 
 	    @Override
 	    public IBinder onBind(Intent arg0) {
-	        return mBinder;
+	        Log.d("TAG","IN ONBIND SECTION");
+
+	    	return mBinder;
 	    }
 
 	     private final IBinder mBinder = new LocalBinder();
 
 
-	     private void showNotification() {
+	     private void showNotification(String message, String sender) {
 	 			NotificationManager notificationManager = (NotificationManager) 
 	 						getSystemService(NOTIFICATION_SERVICE);
 	 			Notification notification = new Notification(R.drawable.icon,
-	 					"You recieved a on Talentwire", System.currentTimeMillis());
+	 					"You recieved a notification in Talentwire", System.currentTimeMillis());
 	 			// Hide the notification after its selected
 	 			notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
 	 			Intent intent = new Intent(this, StaffActivity.class);
 	 			PendingIntent activity = PendingIntent.getActivity(this, 0, intent, 0);
-	 			notification.setLatestEventInfo(this, "You recieved a on Talentwire",
-	 					"Sam says, space dog", activity);
+	 			notification.setLatestEventInfo(this, message,
+	 					"from "+sender, activity);
 	 			notification.number += 1;
 	 			notificationManager.notify(0, notification);
-
+	 			Log.d("TAG","Just created a notification: "+message+""+sender);
 	 		}	     
 
 	     public class LocalBinder extends Binder {
 	            NotifyService getService() {
+	    	        Log.d("TAG","IN LOCALBINDER SECTION");
 	                return NotifyService.this;
+
 	            }
 	        }
 }
