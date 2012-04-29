@@ -54,6 +54,7 @@ import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -491,7 +492,13 @@ public class StaffActivity extends Activity  implements LocationListener {
             }
         });
         if (topics.size()!=0){
-        dialog.show();
+        	/*
+        	 *Perhaps instead of showingthe custom dialog period, just show the share image dialog that I have that posts from the gallery 
+        	 * Yet It will need to include the camera picture
+        	 */
+        //dialog.show();
+        	View view; 
+        	View inflatedView = View.inflate(this, R.layout.sharetest, null);
         } else {
         	Toast.makeText(getApplicationContext(), "Loading subscriptions", 0);
         }
