@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -29,8 +30,10 @@ public class NotifyService extends Service {
 
 	    @Override
 	    public void onCreate() {
+	    	 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	         StrictMode.setThreadPolicy(policy);
+
 	    mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-	    Log.d("TAG","Notify service has been started");
         final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
 		final String fbtoken =  prefs.getString("access_token", null); 
 		//AsyncStaffInfo async = new AsyncStaffInfo(this); 
@@ -41,7 +44,8 @@ public class NotifyService extends Service {
 		//checkMessages();
    	    AsyncMessage mess = new AsyncMessage();
    	    mess.execute();
-	    
+	    Log.d("TAG","In onCreate of Notify Service");
+
 	    }
 	    
 	    public void checkMessages(){

@@ -2,6 +2,7 @@ package com.talentwire;
 
 import java.util.Calendar;
 
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -27,11 +28,11 @@ public class ServiceScheduler extends BroadcastReceiver {
 		//
 		// Fetch every 30 seconds
 		// InexactRepeating allows Android to optimize the energy consumption
-		service.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-				cal.getTimeInMillis(), REPEAT_TIME, pending);
+		//service.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+		//		cal.getTimeInMillis(), REPEAT_TIME, pending);
 		Log.d("TAG","Service Scheduler has been started");
-		// service.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-		// REPEAT_TIME, pending);
+		 service.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+		 REPEAT_TIME, pending);
 
 	}
 }
