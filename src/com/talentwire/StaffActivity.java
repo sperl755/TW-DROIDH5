@@ -58,6 +58,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.HttpAuthHandler;
@@ -425,19 +427,27 @@ public class StaffActivity extends Activity  implements LocationListener {
 		}
 	 
 	 public void customDialog(final Bitmap selected){
-		 final Dialog dialog = new Dialog(this);
+		 //final Dialog dialog = new Dialog(this);
+		 final Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+
+		 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 
 		if(selected!=null){
-        dialog.setContentView(R.layout.customalert);
-        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-
+        dialog.setContentView(R.layout.sharetest);
+        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+        //dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		} else {
-		dialog.setContentView(R.layout.customaletertnopic);
-        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		dialog.setContentView(R.layout.sharetestnopic);
+        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		}
 		dialog.getWindow().setGravity(Gravity.TOP);
-		
-        dialog.setTitle("Share");
+
+		//LayoutParams params = getWindow().getAttributes(); 
+		 //               params.height = LayoutParams.FILL_PARENT; 
+		 //                dialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params); 
+
+        //dialog.setTitle("Share");
         final EditText postbox = (EditText) dialog.findViewById(R.id.postbox);
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
@@ -496,9 +506,9 @@ public class StaffActivity extends Activity  implements LocationListener {
         	 *Perhaps instead of showingthe custom dialog period, just show the share image dialog that I have that posts from the gallery 
         	 * Yet It will need to include the camera picture
         	 */
-        //dialog.show();
-        	View view; 
-        	View inflatedView = View.inflate(this, R.layout.sharetest, null);
+        dialog.show();
+//        	View view; 
+//        	View inflatedView = View.inflate(this, R.layout.sharetest, null);
         } else {
         	Toast.makeText(getApplicationContext(), "Loading subscriptions", 0);
         }

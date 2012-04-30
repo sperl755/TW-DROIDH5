@@ -246,6 +246,7 @@ containing a value of this type.
         public static final int result=0x7f030006;
         public static final int shareimage=0x7f030007;
         public static final int sharetest=0x7f030008;
+        public static final int sharetestnopic=0x7f030009;
     }
     public static final class raw {
         public static final int mystore=0x7f040000;
