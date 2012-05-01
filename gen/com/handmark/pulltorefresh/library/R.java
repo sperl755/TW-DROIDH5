@@ -228,6 +228,7 @@ containing a value of this type.
         public static final int pull_to_refresh_image=0x7f05001a;
         public static final int pull_to_refresh_progress=0x7f050019;
         public static final int pull_to_refresh_text=0x7f050018;
+        public static final int scrollView1=0x7f05001e;
         public static final int selectGallery=0x7f05000e;
         public static final int share=0x7f05000a;
         public static final int shareFrame=0x7f05001d;

@@ -742,6 +742,7 @@ public static Bitmap getUserPic(){
 public static String getInfo(String facebook_key, Context c){
   	Bundle params = new Bundle();
   	Bitmap icon = null;
+  	if (facebook_key!=null){
   		Log.d("TAG", facebook_key);
   		params.putString(Facebook.TOKEN, facebook_key);
   		JSONObject json_data = null;
@@ -826,6 +827,7 @@ public static String getInfo(String facebook_key, Context c){
 	    {
 	        e.printStackTrace();
 	    }
+  	}
 		return name;
 	}
 

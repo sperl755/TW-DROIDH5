@@ -30,8 +30,8 @@ public class NotifyService extends Service {
 
 	    @Override
 	    public void onCreate() {
-	    	 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	         StrictMode.setThreadPolicy(policy);
+	    	// StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	        // StrictMode.setThreadPolicy(policy);
 
 	    mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 

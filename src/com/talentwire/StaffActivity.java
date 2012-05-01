@@ -234,6 +234,10 @@ public class StaffActivity extends Activity  implements LocationListener {
 		        	}
 		        }
 			);
+			
+			/*
+			 * Perhaps going to try and find the correct auth url to use, somehow append the acess token and get it all to work. 
+			 */
 			//mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
 			//mWebView.loadUrl("http://www.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 			mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
@@ -442,7 +446,7 @@ public class StaffActivity extends Activity  implements LocationListener {
         dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		}
 		dialog.getWindow().setGravity(Gravity.TOP);
-
+		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		//LayoutParams params = getWindow().getAttributes(); 
 		 //               params.height = LayoutParams.FILL_PARENT; 
 		 //                dialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params); 
