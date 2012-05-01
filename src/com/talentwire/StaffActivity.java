@@ -301,7 +301,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			/*
 			 * Bind service
 			 */
-			doBindService();
+			//doBindService();
 			
 			}
 	 

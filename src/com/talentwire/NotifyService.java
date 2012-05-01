@@ -38,14 +38,14 @@ public class NotifyService extends Service {
 		final String fbtoken =  prefs.getString("access_token", null); 
 		//AsyncStaffInfo async = new AsyncStaffInfo(this); 
    	    //async.execute(fbtoken);
-		if (prefs.getString("staffkey", null)==null){
-   	    StaffTasks.getInfo(fbtoken, getApplicationContext());
-		}
-		//checkMessages();
-   	    AsyncMessage mess = new AsyncMessage();
-   	    mess.execute();
-	    Log.d("TAG","In onCreate of Notify Service");
-
+//		if (prefs.getString("staffkey", null)==null){
+//   	    StaffTasks.getInfo(fbtoken, getApplicationContext());
+//		}
+//		//checkMessages();
+//   	    AsyncMessage mess = new AsyncMessage();
+//   	    mess.execute();
+//	    Log.d("TAG","In onCreate of Notify Service");
+//
 	    }
 	    
 	    public void checkMessages(){
@@ -112,7 +112,7 @@ public class NotifyService extends Service {
 
 	    @Override
 	    public int onStartCommand(Intent intent, int flags, int startId) {
-			checkMessages();
+			//checkMessages();
 	    	Log.d("TAG","IN onStartCommand SECTION");
 	        return START_STICKY;
 	    }
