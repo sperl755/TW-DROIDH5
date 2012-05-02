@@ -117,7 +117,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	        	Intent i = new Intent(getApplicationContext(), Login.class);
 	        	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 	        	startActivity(i);
-	        	finish();
+	        	//finish();
 	        } else {
 		    
 		    Intent intent = getIntent();

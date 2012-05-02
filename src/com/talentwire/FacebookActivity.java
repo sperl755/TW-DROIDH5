@@ -45,7 +45,7 @@ public class FacebookActivity extends Activity {
             	Log.d("TAG", "Facebook Authentification Complete");
             	saveToken();
             	Intent i = new Intent(getApplicationContext(), StaffActivity.class);
-            	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             	startActivity(i);
             	StaffActivity.facebooked="bannana";
             }
