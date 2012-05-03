@@ -17,9 +17,9 @@ public class Login extends Activity {
         logo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	Intent i = new Intent(getApplicationContext(), FacebookActivity.class);
-            	i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             	startActivity(i);
-            	finish();
+            	//finish();
             }
         });
     }

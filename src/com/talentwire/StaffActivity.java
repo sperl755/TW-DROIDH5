@@ -113,13 +113,16 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    proglin = (LinearLayout)this.findViewById(R.id.proglin);
 		    //startActivityForResult(1,1);
 
+		    /*
 		    if (facebooked.equals("nd")){
 	        	Intent i = new Intent(getApplicationContext(), Login.class);
 	        	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 	        	startActivity(i);
 	        	//finish();
+	        	Log.d("TAG","in facebook != null block");
 	        } else {
-		    
+	        	Log.d("TAG","in else facebook null block");
+
 		    Intent intent = getIntent();
 		    String action = intent.getAction();
 		    String type = intent.getType();
@@ -128,14 +131,14 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    if (Intent.ACTION_SEND.equals(action) && type != null && type.startsWith("image/")) {
 		        	handleSendImage(intent); // Handle single image being sent
 		    }
-
+			*/	
 		    
 		    
 		    directory = new File(Environment.getExternalStorageDirectory()+File.separator+"Talentwire");
 		    directory.mkdirs();
 		    
-
-	        
+		    Log.d("TAG","Before fetching stuffs");
+	        if (!facebooked.equals("nd")){
 	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
 			final String fbtoken =  prefs.getString("access_token", null); 
 			Log.d("TAG",fbtoken);
