@@ -116,7 +116,7 @@ public class FacebookActivity extends Activity {
         if(access_token != null) {
             facebook.setAccessToken(access_token);
         	Intent i = new Intent(getApplicationContext(), StaffActivity.class);
-        	Log.d("TAG","We still have an access token, starting StaffActivity");
+        	Log.d("TAG","We still have an access token, starting StaffActivity, token is "+ access_token);
         	startActivity(i);
         }
         if(expires != 0) {
@@ -127,7 +127,7 @@ public class FacebookActivity extends Activity {
          * Only call authorize if the access_token has expired.
          */
         if(!facebook.isSessionValid()) {
-            facebook.authorize(this, permissions, facebook.FORCE_DIALOG_AUTH , new DialogListener() {
+            facebook.authorize(FacebookActivity.this, permissions, new DialogListener() {
                 @Override
                 public void onComplete(Bundle values) {
                     SharedPreferences.Editor editor = mPrefs.edit();

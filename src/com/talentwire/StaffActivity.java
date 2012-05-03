@@ -83,7 +83,6 @@ public class StaffActivity extends Activity  implements LocationListener {
 	private PullToRefreshWebView mPullRefreshWebView;
 	private WebView mWebView;
     int webCounter =0;
-    public static String facebooked="nd";
     Facebook facebook = new Facebook("187212574660004");
     private LinearLayout proglin;
     private int counter=0;
@@ -105,6 +104,8 @@ public class StaffActivity extends Activity  implements LocationListener {
     public static ArrayList<String> topics = new ArrayList<String>(3);
     public static ArrayList<String> topids = new ArrayList<String>(3);
     private File directory;
+    private SharedPreferences mPrefs;
+
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -138,7 +139,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    directory.mkdirs();
 		    
 		    Log.d("TAG","Before fetching stuffs");
-	        if (!facebooked.equals("nd")){
+		    String access_token = null;
+	        mPrefs = getPreferences(MODE_PRIVATE);
+		    access_token = mPrefs.getString("access_token", null);
+		    if(access_token != null) {
+
 	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
 			final String fbtoken =  prefs.getString("access_token", null); 
 			Log.d("TAG",fbtoken);
@@ -241,9 +246,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 			/*
 			 * Perhaps going to try and find the correct auth url to use, somehow append the acess token and get it all to work. 
 			 */
-			//mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
+			mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
 			//mWebView.loadUrl("http://www.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
-			mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
+			//mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 			//mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 
 
