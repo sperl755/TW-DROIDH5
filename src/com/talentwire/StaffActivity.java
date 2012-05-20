@@ -98,6 +98,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	private String latituteField;
 	private String longitudeField;
 	private Bitmap yourSelectedImage;
+	private String access_token;
     private final static int CAMERA_REQUEST_CODE = 1;
     private static final int SELECT_PHOTO = 100;
 	  public static final int    GALLERY_REQUEST_CODE   = 2;
@@ -112,18 +113,11 @@ public class StaffActivity extends Activity  implements LocationListener {
 
 	        setContentView(R.layout.main);
 		    proglin = (LinearLayout)this.findViewById(R.id.proglin);
-		    //startActivityForResult(1,1);
-
+		    
 		    /*
-		    if (facebooked.equals("nd")){
-	        	Intent i = new Intent(getApplicationContext(), Login.class);
-	        	//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-	        	startActivity(i);
-	        	//finish();
-	        	Log.d("TAG","in facebook != null block");
-	        } else {
-	        	Log.d("TAG","in else facebook null block");
-
+		     * Incase of image is selected from camera or gallery and needs to be sent again
+		     */
+		    
 		    Intent intent = getIntent();
 		    String action = intent.getAction();
 		    String type = intent.getType();
@@ -132,23 +126,20 @@ public class StaffActivity extends Activity  implements LocationListener {
 		    if (Intent.ACTION_SEND.equals(action) && type != null && type.startsWith("image/")) {
 		        	handleSendImage(intent); // Handle single image being sent
 		    }
-			*/	
+			
 		    
-		    
+		    /*
+		     * Create directory for temporary image storing for uploading
+		     */
 		    directory = new File(Environment.getExternalStorageDirectory()+File.separator+"Talentwire");
 		    directory.mkdirs();
 		    
-		    Log.d("TAG","Before fetching stuffs");
-		    String access_token = null;
-	        mPrefs = getPreferences(MODE_PRIVATE);
-		    access_token = mPrefs.getString("access_token", null);
+	        mPrefs = getSharedPreferences("facebook", MODE_PRIVATE);
+	        access_token = mPrefs.getString("access_token", null);
+		    Log.d("TAG","In staff activity now, acess token equals"+access_token);
 		    if(access_token != null) {
-
-	        final SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(StaffActivity.this); 
-			final String fbtoken =  prefs.getString("access_token", null); 
-			Log.d("TAG",fbtoken);
 			AsyncStaffInfo async = new AsyncStaffInfo(this); 
-	   	    async.execute(fbtoken);
+	   	    async.execute(access_token);
 	        }
 	        
 	        
@@ -246,9 +237,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 			/*
 			 * Perhaps going to try and find the correct auth url to use, somehow append the acess token and get it all to work. 
 			 */
-			mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
+			//mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
 			//mWebView.loadUrl("http://www.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
-			//mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
+			mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 			//mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 
 
