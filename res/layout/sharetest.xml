@@ -18,7 +18,7 @@
                     <FrameLayout android:id="@+id/shareFrame" android:layout_height="wrap_content" android:layout_gravity="bottom" android:layout_width="match_parent">
                         <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/photo_button" android:src="@drawable/photo_button" android:id="@+id/camera"></ImageButton>
                         <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/share" android:id="@+id/share" android:layout_gravity="right"></ImageButton>
-                        <Spinner android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/catselect" android:background="@drawable/categoryselector" android:layout_gravity="center_horizontal"   android:textColor="#AAA"></Spinner>
+                        <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/catselect" android:background="@drawable/categoryselector" android:layout_gravity="center_horizontal"   android:textColor="#AAA"></ImageButton>
                     </FrameLayout>
                 </FrameLayout>
 </LinearLayout>

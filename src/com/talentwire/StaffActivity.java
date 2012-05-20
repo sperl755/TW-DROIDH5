@@ -429,6 +429,14 @@ public class StaffActivity extends Activity  implements LocationListener {
 			}
 		}
 	 
+	 public void subSelectDialog(){
+		 Dialog dialog=new Dialog(this);
+		 //Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+		 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		 dialog.setContentView(R.layout.subselectordialog);
+		 dialog.show();
+	 }
+	 
 	 public void customDialog(final Bitmap selected){
 		 //final Dialog dialog = new Dialog(this);
 		 final Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
@@ -455,8 +463,9 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
-        final Spinner catselect = (Spinner) dialog.findViewById(R.id.catselect);
-
+        ImageButton catselect = (ImageButton) dialog.findViewById(R.id.catselect);
+        
+        
         postbox.setText("What are you working on?");
         postbox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -472,6 +481,12 @@ public class StaffActivity extends Activity  implements LocationListener {
         	Log.d("TAG","Custom Dialog with no image");
         }
         
+        catselect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	subSelectDialog();
+            }
+        });
+        /*
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
         catselect.setAdapter(adapter);
         if (topics.size()!=0){
@@ -484,14 +499,14 @@ public class StaffActivity extends Activity  implements LocationListener {
         	subs.execute();
         	Log.d("TAG","No subs, getting them async");
         }
-        
+        */
 
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if (selected==null){
-                    post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()));
+                   // post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()));
             	} else if (selected!=null){
-            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected);
+            		//postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected);
             	}
                 dialog.dismiss();
             }

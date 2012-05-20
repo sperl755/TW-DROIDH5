@@ -212,6 +212,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int camera=0x7f050009;
         public static final int catselect=0x7f05000b;
         public static final int checkProg=0x7f050016;
+        public static final int doFrame=0x7f050020;
         public static final int firstweb=0x7f050017;
         public static final int frameLayout1=0x7f05000f;
         public static final int frameLayout2=0x7f05001d;
@@ -222,6 +223,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int linearLayout1=0x7f050008;
         public static final int linearLayout2=0x7f05000c;
         public static final int loginbutton=0x7f050011;
+        public static final int mentorFrame=0x7f050023;
         public static final int msgButton=0x7f050014;
         public static final int postbox=0x7f050007;
         public static final int profButton=0x7f050013;
@@ -239,6 +241,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int takePhoto=0x7f05000d;
         public static final int talentwire=0x7f050012;
         public static final int textView1=0x7f05001c;
+        public static final int textView2=0x7f050022;
+        public static final int textView3=0x7f050024;
+        public static final int trendFrame=0x7f050021;
         public static final int webview=0x7f050004;
     }
     public static final class layout {
@@ -252,6 +257,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shareimage=0x7f030007;
         public static final int sharetest=0x7f030008;
         public static final int sharetestnopic=0x7f030009;
+        public static final int subselectordialog=0x7f03000a;
     }
     public static final class raw {
         public static final int mystore=0x7f040000;
