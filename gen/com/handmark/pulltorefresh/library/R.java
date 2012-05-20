@@ -17,22 +17,25 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int adapterViewBackground=0x7f010000;
+        public static final int ptrAdapterViewBackground=0x7f010000;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int headerBackground=0x7f010001;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+        public static final int ptrHeaderBackground=0x7f010001;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
          */
-        public static final int headerTextColor=0x7f010002;
+        public static final int ptrHeaderSubTextColor=0x7f010003;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int ptrHeaderTextColor=0x7f010002;
         /** <p>Must be one or more (separated by '|') of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -44,7 +47,7 @@ containing a value of this type.
 <tr><td><code>both</code></td><td>0x3</td><td></td></tr>
 </table>
          */
-        public static final int mode=0x7f010003;
+        public static final int ptrMode=0x7f010004;
     }
     public static final class color {
         public static final int dali=0x7f070001;
@@ -211,7 +214,7 @@ containing a value of this type.
         public static final int checkProg=0x7f050016;
         public static final int firstweb=0x7f050017;
         public static final int frameLayout1=0x7f05000f;
-        public static final int frameLayout2=0x7f05001c;
+        public static final int frameLayout2=0x7f05001d;
         public static final int gridview=0x7f050003;
         public static final int image=0x7f050006;
         public static final int imageView1=0x7f050010;
@@ -225,16 +228,17 @@ containing a value of this type.
         public static final int proglin=0x7f050015;
         public static final int pullDownFromTop=0x7f050000;
         public static final int pullUpFromBottom=0x7f050001;
-        public static final int pull_to_refresh_image=0x7f05001a;
-        public static final int pull_to_refresh_progress=0x7f050019;
+        public static final int pull_to_refresh_image=0x7f05001b;
+        public static final int pull_to_refresh_progress=0x7f05001a;
+        public static final int pull_to_refresh_sub_text=0x7f050019;
         public static final int pull_to_refresh_text=0x7f050018;
-        public static final int scrollView1=0x7f05001e;
+        public static final int scrollView1=0x7f05001f;
         public static final int selectGallery=0x7f05000e;
         public static final int share=0x7f05000a;
-        public static final int shareFrame=0x7f05001d;
+        public static final int shareFrame=0x7f05001e;
         public static final int takePhoto=0x7f05000d;
         public static final int talentwire=0x7f050012;
-        public static final int textView1=0x7f05001b;
+        public static final int textView1=0x7f05001c;
         public static final int webview=0x7f050004;
     }
     public static final class layout {
@@ -254,14 +258,18 @@ containing a value of this type.
         public static final int test=0x7f040001;
     }
     public static final class string {
-        public static final int app_name=0x7f060005;
-        public static final int hello=0x7f060004;
-        public static final int job_type=0x7f060006;
-        public static final int jsonjobstest=0x7f060007;
+        public static final int app_name=0x7f060007;
+        public static final int hello=0x7f060006;
+        public static final int job_type=0x7f060008;
+        public static final int jsonjobstest=0x7f060009;
+        /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
+         */
+        public static final int pull_to_refresh_from_bottom_pull_label=0x7f060003;
+        public static final int pull_to_refresh_from_bottom_refreshing_label=0x7f060005;
+        public static final int pull_to_refresh_from_bottom_release_label=0x7f060004;
         public static final int pull_to_refresh_pull_label=0x7f060000;
         public static final int pull_to_refresh_refreshing_label=0x7f060002;
         public static final int pull_to_refresh_release_label=0x7f060001;
-        public static final int pull_to_refresh_tap_label=0x7f060003;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.
@@ -270,21 +278,24 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PullToRefresh_adapterViewBackground com.talentwire:adapterViewBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PullToRefresh_headerBackground com.talentwire:headerBackground}</code></td><td></td></tr>
-           <tr><td><code>{@link #PullToRefresh_headerTextColor com.talentwire:headerTextColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #PullToRefresh_mode com.talentwire:mode}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrAdapterViewBackground com.talentwire:ptrAdapterViewBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderBackground com.talentwire:ptrHeaderBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderSubTextColor com.talentwire:ptrHeaderSubTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrHeaderTextColor com.talentwire:ptrHeaderTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PullToRefresh_ptrMode com.talentwire:ptrMode}</code></td><td></td></tr>
            </table>
-           @see #PullToRefresh_adapterViewBackground
-           @see #PullToRefresh_headerBackground
-           @see #PullToRefresh_headerTextColor
-           @see #PullToRefresh_mode
+           @see #PullToRefresh_ptrAdapterViewBackground
+           @see #PullToRefresh_ptrHeaderBackground
+           @see #PullToRefresh_ptrHeaderSubTextColor
+           @see #PullToRefresh_ptrHeaderTextColor
+           @see #PullToRefresh_ptrMode
          */
         public static final int[] PullToRefresh = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
         };
         /**
-          <p>This symbol is the offset where the {@link com.talentwire.R.attr#adapterViewBackground}
+          <p>This symbol is the offset where the {@link com.talentwire.R.attr#ptrAdapterViewBackground}
           attribute's value can be found in the {@link #PullToRefresh} array.
 
 
@@ -292,11 +303,11 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:adapterViewBackground
+          @attr name android:ptrAdapterViewBackground
         */
-        public static final int PullToRefresh_adapterViewBackground = 0;
+        public static final int PullToRefresh_ptrAdapterViewBackground = 0;
         /**
-          <p>This symbol is the offset where the {@link com.talentwire.R.attr#headerBackground}
+          <p>This symbol is the offset where the {@link com.talentwire.R.attr#ptrHeaderBackground}
           attribute's value can be found in the {@link #PullToRefresh} array.
 
 
@@ -304,26 +315,35 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:headerBackground
+          @attr name android:ptrHeaderBackground
         */
-        public static final int PullToRefresh_headerBackground = 1;
+        public static final int PullToRefresh_ptrHeaderBackground = 1;
         /**
-          <p>This symbol is the offset where the {@link com.talentwire.R.attr#headerTextColor}
+          <p>This symbol is the offset where the {@link com.talentwire.R.attr#ptrHeaderSubTextColor}
           attribute's value can be found in the {@link #PullToRefresh} array.
 
 
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:headerTextColor
+          @attr name android:ptrHeaderSubTextColor
         */
-        public static final int PullToRefresh_headerTextColor = 2;
+        public static final int PullToRefresh_ptrHeaderSubTextColor = 3;
         /**
-          <p>This symbol is the offset where the {@link com.talentwire.R.attr#mode}
+          <p>This symbol is the offset where the {@link com.talentwire.R.attr#ptrHeaderTextColor}
+          attribute's value can be found in the {@link #PullToRefresh} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:ptrHeaderTextColor
+        */
+        public static final int PullToRefresh_ptrHeaderTextColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.talentwire.R.attr#ptrMode}
           attribute's value can be found in the {@link #PullToRefresh} array.
 
 
@@ -337,8 +357,8 @@ containing a value of this type.
 <tr><td><code>pullUpFromBottom</code></td><td>0x2</td><td></td></tr>
 <tr><td><code>both</code></td><td>0x3</td><td></td></tr>
 </table>
-          @attr name android:mode
+          @attr name android:ptrMode
         */
-        public static final int PullToRefresh_mode = 3;
+        public static final int PullToRefresh_ptrMode = 4;
     };
 }
