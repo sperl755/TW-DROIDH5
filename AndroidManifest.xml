@@ -71,7 +71,7 @@ android:windowSoftInputMode="adjustResize" android:screenOrientation="portrait" 
 				<activity android:name=".CompanyPage" android:theme="@android:style/Theme.NoTitleBar"
 android:windowSoftInputMode="adjustResize" android:screenOrientation="portrait" ></activity>
 		<service android:name=".StaffService"> </service>
-   <uses-library android:name="com.google.android.maps" />
+   <!--  <uses-library android:name="com.google.android.maps" />-->
    
     </application>
      <uses-permission android:name="android.permission.CAMERA" />

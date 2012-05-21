@@ -31,7 +31,8 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical|left"
             android:text="Do"
             android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -61,7 +62,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical|left"
             android:text="Trend"
             android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -92,7 +94,8 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical|left"
             android:text="Mentor"
             android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />

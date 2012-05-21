@@ -69,10 +69,12 @@ import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -101,6 +103,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	private String access_token;
     private final static int CAMERA_REQUEST_CODE = 1;
     private static final int SELECT_PHOTO = 100;
+    private String selectedcat;
 	  public static final int    GALLERY_REQUEST_CODE   = 2;
     public static ArrayList<String> topics = new ArrayList<String>(3);
     public static ArrayList<String> topids = new ArrayList<String>(3);
@@ -430,15 +433,37 @@ public class StaffActivity extends Activity  implements LocationListener {
 		}
 	 
 	 public void subSelectDialog(){
-		 Dialog dialog=new Dialog(this);
+		 final Dialog subdialog=new Dialog(this);
 		 //Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-		 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		 dialog.setContentView(R.layout.subselectordialog);
-		 dialog.show();
+		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		 subdialog.setContentView(R.layout.subselectordialog);
+		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
+		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
+		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
+		 doFrame.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	selectedcat = topids.get(0);
+	            	subdialog.dismiss();
+
+	            }
+	        });
+		 trendFrame.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	selectedcat = topids.get(1);
+	            	subdialog.dismiss();
+
+	            }
+	        });
+		 mentorFrame.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	selectedcat = topids.get(2);
+	            	subdialog.dismiss();
+	            }
+	        });
+		 subdialog.show();
 	 }
 	 
 	 public void customDialog(final Bitmap selected){
-		 //final Dialog dialog = new Dialog(this);
 		 final Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
 
 		 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -447,23 +472,18 @@ public class StaffActivity extends Activity  implements LocationListener {
 		if(selected!=null){
         dialog.setContentView(R.layout.sharetest);
         dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-        //dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		} else {
 		dialog.setContentView(R.layout.sharetestnopic);
         dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		}
 		dialog.getWindow().setGravity(Gravity.TOP);
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		//LayoutParams params = getWindow().getAttributes(); 
-		 //               params.height = LayoutParams.FILL_PARENT; 
-		 //                dialog.getWindow().setAttributes((android.view.WindowManager.LayoutParams) params); 
-
-        //dialog.setTitle("Share");
         final EditText postbox = (EditText) dialog.findViewById(R.id.postbox);
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
         ImageButton catselect = (ImageButton) dialog.findViewById(R.id.catselect);
+        final TextView catText = (TextView)dialog.findViewById(R.id.catText);
         
         
         postbox.setText("What are you working on?");
@@ -481,32 +501,79 @@ public class StaffActivity extends Activity  implements LocationListener {
         	Log.d("TAG","Custom Dialog with no image");
         }
         
+        
+        /*
+        new Dialog.Builder(StaffActivity.this)new DialogInterface.OnClickListener() {
+        		      public void onClick(DialogInterface arg0, int arg1) {
+        		             Intent i = new Intent(YourActivity.this, NewActivity.class);
+        		             startActivity(i);
+        		  }
+        		  */
+		 final Dialog subdialog=new Dialog(this);
+
         catselect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	subSelectDialog();
-            }
+       		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    		 subdialog.setContentView(R.layout.subselectordialog);
+    		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
+    		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
+    		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
+    		 doFrame.setOnClickListener(new View.OnClickListener() {
+    	            public void onClick(View v) {
+    	            	selectedcat = topids.get(0);
+    	            	subdialog.dismiss();
+    	            	catText.setText("Do");
+
+    	            }
+    	        });
+    		 trendFrame.setOnClickListener(new View.OnClickListener() {
+    	            public void onClick(View v) {
+    	            	selectedcat = topids.get(1);
+    	            	subdialog.dismiss();
+    	            	catText.setText("Trend");
+    	            }
+    	        });
+    		 mentorFrame.setOnClickListener(new View.OnClickListener() {
+    	            public void onClick(View v) {
+    	            	selectedcat = topids.get(2);
+    	            	subdialog.dismiss();
+    	            	catText.setText("Mentor");
+
+    	            }
+    	        });
+    		 subdialog.show();
+    		 }
         });
-        /*
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
-        catselect.setAdapter(adapter);
-        if (topics.size()!=0){
-        	for(int i=0; i<3;i++){
-        		adapter.add(topics.get(i));
-        		}
-        	} else {
+        
+  
+        if (topids.size()==0){
         	Toast.makeText(getApplicationContext(), "Please wait, loading subscriptions", 0).show();
         	AsyncSubs subs = new AsyncSubs();
         	subs.execute();
         	Log.d("TAG","No subs, getting them async");
         }
-        */
+        
+        if (selectedcat==null){
+        	selectedcat = selectedcat = topids.get(0);
+        	catText.setText("Do");
+        } else if (selectedcat==topids.get(0)){
+        	catText.setText(topics.get(0));
+        	catText.setText("Do");
+        } else if (selectedcat.equals(topids.get(1))){
+        	catText.setText(topics.get(1));
+        	catText.setText("Trend");
+        } else if (selectedcat.equals(topids.get(2))){
+        	catText.setText(topics.get(2));
+        	catText.setText("Mentor");
+        }
+        
 
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if (selected==null){
-                   // post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()));
+                    post(postbox.getText().toString(), selectedcat);
             	} else if (selected!=null){
-            		//postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected);
+            		postImage(postbox.getText().toString(), selectedcat,selected);
             	}
                 dialog.dismiss();
             }
