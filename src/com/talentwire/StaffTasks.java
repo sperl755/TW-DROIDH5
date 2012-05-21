@@ -249,6 +249,8 @@ public class StaffTasks{
 
 	        if(SDK_INT>=12) {
 	            return bitmap.getByteCount();
+	            //return bitmap.getRowBytes() * bitmap.getHeight();
+
 	        } else {
 	            return bitmap.getRowBytes() * bitmap.getHeight();
 	        }

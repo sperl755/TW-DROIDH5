@@ -3,51 +3,90 @@
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="#EEE"
+    android:background="#FFF"
     android:orientation="vertical" >
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="1dip"
+    android:background="#6A92D6" />
 
     <FrameLayout
         android:id="@+id/doFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+        
+<View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:background="#6A92D6" />
 
+<View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:layout_gravity="right"
+    android:background="#6A92D6" />
+        
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Do"
-            android:textColor="#000"
+            android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </FrameLayout>
 <View
     android:layout_width="fill_parent"
     android:layout_height="1dip"
-    android:background="#000000" />
+    android:background="#EEE" />
+
     <FrameLayout
         android:id="@+id/trendFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:clickable="true" >
 
+<View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:background="#6A92D6" />
+<View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:layout_gravity="right"
+    android:background="#6A92D6" />
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Trend"
-            android:textColor="#000"
+            android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </FrameLayout>
 <View
     android:layout_width="fill_parent"
     android:layout_height="1dip"
-    android:background="#000000" />
+    android:background="#EEE" />
+
     <FrameLayout
         android:id="@+id/mentorFrame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:background="#6A92D6" />
+<View
+    android:layout_width="1dip"
+    android:layout_height="30dp"
+    android:layout_gravity="right"
+    android:background="#6A92D6" />
 
         <TextView
             android:id="@+id/textView3"
@@ -55,9 +94,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Mentor"
-            android:textColor="#000"
+            android:textColor="#333"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </FrameLayout>
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dip"
+    android:background="#6A92D6" />
 
 </LinearLayout>

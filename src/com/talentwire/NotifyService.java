@@ -1,6 +1,7 @@
 package com.talentwire;
 
 import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -16,7 +17,6 @@ import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 

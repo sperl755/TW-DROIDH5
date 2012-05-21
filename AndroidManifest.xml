@@ -51,7 +51,6 @@
 		<activity android:name=".CheckIn" ></activity>
 		<activity android:name=".DashboardActivity" ></activity>
 		<activity android:name=".StaffYourself" ></activity>
-				<activity android:name=".TestHtml" android:theme="@android:style/Theme.NoTitleBar"     android:hardwareAccelerated="true"  ></activity>
 		<activity android:name=".SYourself" ></activity>
 				<activity android:name=".testGrid" ></activity>
 
