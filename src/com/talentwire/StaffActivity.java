@@ -24,6 +24,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
 import com.talentwire.NotifyService.LocalBinder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -510,39 +511,44 @@ public class StaffActivity extends Activity  implements LocationListener {
         		  }
         		  */
 		 final Dialog subdialog=new Dialog(this);
-
+		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		 //final View subdialog = new View(this);
         catselect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-       		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            	
     		 subdialog.setContentView(R.layout.subselectordialog);
+       		 //subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
     		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
     		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
     		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
+
     		 doFrame.setOnClickListener(new View.OnClickListener() {
     	            public void onClick(View v) {
     	            	selectedcat = topids.get(0);
-    	            	subdialog.dismiss();
     	            	catText.setText("Do");
-
+    	            	subdialog.cancel();
     	            }
     	        });
     		 trendFrame.setOnClickListener(new View.OnClickListener() {
     	            public void onClick(View v) {
     	            	selectedcat = topids.get(1);
-    	            	subdialog.dismiss();
     	            	catText.setText("Trend");
+    	            	subdialog.cancel();
     	            }
     	        });
     		 mentorFrame.setOnClickListener(new View.OnClickListener() {
     	            public void onClick(View v) {
     	            	selectedcat = topids.get(2);
-    	            	subdialog.dismiss();
     	            	catText.setText("Mentor");
+    	            	subdialog.cancel();
 
     	            }
     	        });
-    		 subdialog.show();
+       		 subdialog.show();
+
     		 }
+
         });
         
   
