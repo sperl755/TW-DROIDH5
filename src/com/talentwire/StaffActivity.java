@@ -513,7 +513,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 		 final Dialog subdialog=new Dialog(this);
 		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		 //final View subdialog = new View(this);
-        catselect.setOnClickListener(new View.OnClickListener() {
+		 catselect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
     		 subdialog.setContentView(R.layout.subselectordialog);
@@ -592,7 +592,7 @@ public class StaffActivity extends Activity  implements LocationListener {
             	dialog.dismiss();
             }
         });
-        if (topics.size()!=0){
+        if (topids.size()!=0){
         	/*
         	 *Perhaps instead of showingthe custom dialog period, just show the share image dialog that I have that posts from the gallery 
         	 * Yet It will need to include the camera picture
