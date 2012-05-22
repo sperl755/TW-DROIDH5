@@ -316,7 +316,8 @@ public class StaffTasks{
 
             			form_stream.write(form_output.toByteArray());
             			Log.d("TAG","Feed-Connection content legnth :"+Integer.toString(feed_connection.getContentLength()));
-
+            			form_stream.close();
+            			feed_connection.disconnect();
         			}else {
         				String image_part_1 = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"richmedia_type\"\r\n\r\n" + "0\r\n");
         				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + topic_id.length())));
@@ -334,6 +335,8 @@ public class StaffTasks{
         				form_output.write(image_part_1.getBytes());
             			form_stream.write(form_output.toByteArray());
             			Log.d("TAG","Feed-Connection content legnth :"+ Integer.toString(feed_connection.getContentLength()));
+            			form_stream.close();
+            			feed_connection.disconnect();
         			}
         			//write form to connection
         			

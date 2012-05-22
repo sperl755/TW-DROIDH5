@@ -12,9 +12,14 @@
                 <ImageView android:id="@+id/imageView1" android:layout_width="fill_parent" android:layout_gravity="top" android:layout_height="wrap_content" android:background="@drawable/backrepeat" android:paddingTop="0px" android:scaleType="centerCrop"></ImageView>
                 <ImageButton android:layout_marginBottom="1px" android:layout_width="wrap_content" android:background="@drawable/tw_logofix" android:layout_gravity="center_horizontal|center_vertical" android:layout_height="18dp" android:id="@+id/talentwire" android:src="@drawable/tw_logofix" android:scaleType="fitXY" android:adjustViewBounds="true"></ImageButton>
             </FrameLayout>
+                <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
             <EditText android:text="Describe your image.." android:layout_height="150dp" android:layout_width="match_parent" android:inputType="textMultiLine" android:id="@+id/postbox" android:layout_margin="10dp">
                 <requestFocus></requestFocus>
             </EditText>
+            </ScrollView>
             <FrameLayout android:id="@+id/frameLayout2" android:layout_height="match_parent" android:layout_marginBottom="10dp" android:layout_margin="10dp" android:layout_width="match_parent">
                 <FrameLayout android:id="@+id/shareFrame" android:layout_width="match_parent" android:layout_gravity="bottom" android:layout_height="wrap_content">
                     <ImageButton android:layout_width="wrap_content" android:background="@drawable/photo_button" android:layout_height="wrap_content" android:id="@+id/camera" android:src="@drawable/photo_button"></ImageButton>
