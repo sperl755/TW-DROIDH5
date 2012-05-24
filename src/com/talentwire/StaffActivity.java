@@ -724,6 +724,10 @@ public class StaffActivity extends Activity  implements LocationListener {
 			    startActivity(intent);
 			}
 
+		   
+    private void handleOath(String oath){
+    	//Do Something with oath, probably have it append to each url
+    }
 	 public void checkLoading(){
 			if (counter==0){
 	      	  counter++;
@@ -870,6 +874,25 @@ public class StaffActivity extends Activity  implements LocationListener {
 	        @Override
 	        protected Void doInBackground(Void... params) {
 				parseSubs(StaffTasks.getSubs(getApplicationContext()));
+	            return null;
+	        }
+	    }
+	 
+	 private class AsyncOath extends AsyncTask<Void, Void, Void>
+	    {
+	        @Override
+	        protected void onPostExecute(Void result) {
+	        }
+
+	    	
+
+			@Override
+	        protected void onPreExecute() {
+	        }
+
+	        @Override
+	        protected Void doInBackground(Void... params) {
+				handleOath(StaffTasks.getOath(getApplicationContext()));
 	            return null;
 	        }
 	    }
