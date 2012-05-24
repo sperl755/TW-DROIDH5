@@ -32,7 +32,9 @@
 		 	<receiver android:name=".ServiceAutoStarter">
 			</receiver>
 	<activity android:name=".Register" ></activity>
-		<activity android:name=".FacebookActivity" android:noHistory="true"></activity>
+		<activity android:name=".FacebookActivity"></activity>
+		<activity android:name=".FacebookNative"></activity>
+		
 		<activity android:name=".HomePage"></activity>
 <activity android:name=".ShareImage" android:theme="@android:style/Theme.NoTitleBar"
 									android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"
