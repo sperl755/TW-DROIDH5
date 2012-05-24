@@ -42,7 +42,7 @@ public class FacebookActivity extends Activity {
          * Only call authorize if the access_token has expired.
          */
         if(!facebook.isSessionValid()) {
-            facebook.authorize(FacebookActivity.this, permissions, facebook.FORCE_DIALOG_AUTH, new DialogListener() {
+            facebook.authorize(FacebookActivity.this, permissions, new DialogListener() {
                 @Override
                 public void onComplete(Bundle values) {
                 	onCompleteFunctions();
