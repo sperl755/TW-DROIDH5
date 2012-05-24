@@ -147,13 +147,13 @@ public class StaffTasks{
 	public static String subScribe(String topicid, Context c) {
 		String subs = null;
 		try {
-		URI url = new URI("https://talentwire.me/apis/topic/"+topicid+"/subscribe/"+staffkey);
+			URI url = new URI("https://talentwire.me/apis/topic/"+topicid+"/subscribe/"+staffkey);
 		
 	    HttpGet get = new HttpGet(url);
 	    HttpClient client = new MyHttpClient(c);
 	    ResponseHandler<String> responseHandler=new BasicResponseHandler();
 	    subs = client.execute(get, responseHandler);
-	    Log.d("TAG", "RESPONSE STRING FROM SUBSRIBE TO TOPIC"+topicid+" : "+subs);
+	    Log.d("TAG", "RESPONSE STRING FROM SUBSRIBE TO TOPIC "+subs+" topic id is "+topicid);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -164,6 +164,28 @@ public class StaffTasks{
 			e.printStackTrace();
 		}
 	    return subs;
+	}
+	
+	public static String getOath(Context c) {
+		String oath = null;
+		try {
+		URI url = new URI("https://talentwire.me/apis/get_session_key/"+staffkey);
+
+	    HttpGet get = new HttpGet(url);
+	    HttpClient client = new MyHttpClient(c);
+	    ResponseHandler<String> responseHandler=new BasicResponseHandler();
+	    subs = client.execute(get, responseHandler);
+	    Log.d("TAG", "RESPONSE STRING FROM OATH IS "+oath);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+	    } catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	    return oath;
 	}
 	
 	   public static void createFeed(String url_title,String url_description,String share_to_friend,String post_to,String url_address,String share_to_career_team,String feed, Context c) {
