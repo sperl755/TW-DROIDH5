@@ -36,6 +36,12 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.params.ConnManagerPNames;
+import org.apache.http.conn.params.ConnPerRouteBean;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
@@ -44,10 +50,12 @@ import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -775,6 +783,19 @@ public static String getInfo(String facebook_key, Context c){
   		JSONObject json_data = null;
   		SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
 		Editor editor = prefs.edit();
+		
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+		 
+		HttpParams paramz = new BasicHttpParams();
+		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+		 
+		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+		DefaultHttpClient httpClient = new DefaultHttpClient(cm, paramz);
      
 	    try
 	    {
@@ -811,7 +832,7 @@ public static String getInfo(String facebook_key, Context c){
 		editor.remove("staffkey");
 		editor.commit();
 		String responseBody = null;
-		HttpPost post = new HttpPost("https://talentwire.me/apis/fb_login");
+		HttpPost post = new HttpPost("https://test.talentwire.me/apis/fb_login");
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(10);
 		nameValuePairs.add(new BasicNameValuePair("email", email));
 		nameValuePairs.add(new BasicNameValuePair("name", name));
@@ -823,9 +844,10 @@ public static String getInfo(String facebook_key, Context c){
 		nameValuePairs.add(new BasicNameValuePair("facebook_uid", facebook_uid));
 		nameValuePairs.add(new BasicNameValuePair("facebook_session_key", facebook_key));
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			HttpClient client = new MyHttpClient(c);
+			//httpClient
+			//HttpClient client = new MyHttpClient(c);
 			ResponseHandler<String> responseHandler=new BasicResponseHandler();
-			responseBody = client.execute(post, responseHandler);
+			responseBody = httpClient.execute(post, responseHandler);
 			Log.d("TAG",responseBody);	
 
 			JSONObject jresult;
