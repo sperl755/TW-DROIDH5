@@ -833,6 +833,22 @@ public class StaffActivity extends Activity  implements LocationListener {
 	    }
 	 
 	 
+	 private class AsyncGetOath extends AsyncTask<Void, Void, String>
+	    {
+	        protected void onPostExecute(Void result) {
+	        }
+
+	    	
+			@Override
+	        protected void onPreExecute() {
+	        }
+
+	        @Override
+	        protected String doInBackground(Void... params) {
+	            return StaffTasks.getOath(getApplicationContext());
+
+	        }
+	    }
 	 
 	 private class AsyncLocUpdate extends AsyncTask<Void, Void, Void>
 	    {

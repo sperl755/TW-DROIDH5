@@ -784,18 +784,18 @@ public static String getInfo(String facebook_key, Context c){
   		SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
 		Editor editor = prefs.edit();
 		
-		SchemeRegistry schemeRegistry = new SchemeRegistry();
-		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
-		 
-		HttpParams paramz = new BasicHttpParams();
-		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
-		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
-		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
-		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
-		 
-		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
-		DefaultHttpClient httpClient = new DefaultHttpClient(cm, paramz);
+//		SchemeRegistry schemeRegistry = new SchemeRegistry();
+//		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+//		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+//		 
+//		HttpParams paramz = new BasicHttpParams();
+//		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+//		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+//		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+//		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+//		 
+//		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+//		DefaultHttpClient httpClient = new DefaultHttpClient(cm, paramz);
      
 	    try
 	    {
@@ -832,7 +832,7 @@ public static String getInfo(String facebook_key, Context c){
 		editor.remove("staffkey");
 		editor.commit();
 		String responseBody = null;
-		HttpPost post = new HttpPost("https://test.talentwire.me/apis/fb_login");
+		HttpPost post = new HttpPost("https://talentwire.me/apis/fb_login");
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(10);
 		nameValuePairs.add(new BasicNameValuePair("email", email));
 		nameValuePairs.add(new BasicNameValuePair("name", name));
@@ -845,9 +845,9 @@ public static String getInfo(String facebook_key, Context c){
 		nameValuePairs.add(new BasicNameValuePair("facebook_session_key", facebook_key));
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			//httpClient
-			//HttpClient client = new MyHttpClient(c);
+			HttpClient client = new MyHttpClient(c);
 			ResponseHandler<String> responseHandler=new BasicResponseHandler();
-			responseBody = httpClient.execute(post, responseHandler);
+			responseBody = client.execute(post, responseHandler);
 			Log.d("TAG",responseBody);	
 
 			JSONObject jresult;

@@ -58,6 +58,7 @@ public class AsyncStaffInfo extends AsyncTask<String, Integer, String> implement
 		publishProgress(30);
 		//userpic = StaffTasks.getUserPic();
 		StaffTasks.getSubs(mContext);
+		//StaffTasks.getOath(mContext);
 		//connnum = StaffTasks.getFriendCount(params[0]);
 		publishProgress(90);		
 		return null;
