@@ -35,6 +35,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -56,6 +57,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -947,8 +951,42 @@ public class StaffActivity extends Activity  implements LocationListener {
 	        mWebView.goBack();
 	        if (mWebView.getUrl().contains("dashboard")){
 	        	Log.d("TAG","On the dash URL is "+mWebView.getUrl());
-	        	finish();
-	        }
+		        Intent intent = new Intent(this, Login.class);
+		        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		        startActivity(intent);
+		        finish();
+		        }
 	    	return;
+	    }
+	    @Override
+	    public boolean onCreateOptionsMenu(Menu menu) {
+	        MenuInflater inflater = getMenuInflater();
+	        inflater.inflate(R.menu.menu, menu);
+	        return true;
+	    }
+	    @Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        switch (item.getItemId()) {
+//	            case R.id.icon:     Toast.makeText(this, "You pressed the icon!", Toast.LENGTH_LONG).show();
+//	                                break;
+	            case R.id.text:     Toast.makeText(this, "Goodbye", Toast.LENGTH_LONG).show();
+	            					logout();
+	                                break;
+//	            case R.id.icontext: Toast.makeText(this, "You pressed the icon and text!", Toast.LENGTH_LONG).show();
+//	                                break;
+	        }
+	        return true;
+	    }
+	    private void logout(){
+	    	//getApplicationContext().getSharedPreferences("facebook", 0).edit().clear().commit();
+	        mPrefs = getPreferences(MODE_PRIVATE);
+	        mPrefs.edit().clear().commit();
+	        mPrefs.edit().remove("access_token");
+	        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+	  		prefs.edit().clear().commit();
+	        Intent intent = new Intent(this, Login.class);
+	        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        startActivity(intent);
+	        finish();
 	    }
 }

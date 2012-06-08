@@ -239,6 +239,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shareFrame=0x7f05001c;
         public static final int takePhoto=0x7f050006;
         public static final int talentwire=0x7f05000b;
+        public static final int text=0x7f050024;
         public static final int textView1=0x7f050016;
         public static final int textView2=0x7f050021;
         public static final int textView3=0x7f050023;
@@ -255,6 +256,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sharetest=0x7f030006;
         public static final int sharetestnopic=0x7f030007;
         public static final int subselectordialog=0x7f030008;
+    }
+    public static final class menu {
+        public static final int menu=0x7f090000;
     }
     public static final class raw {
         public static final int mystore=0x7f040000;
