@@ -24,7 +24,9 @@
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:paddingTop="20dp"
-                android:text="Describe your image.." >
+                android:text="Describe your image.." 
+                android:gravity="top"
+                >
 
                 <requestFocus></requestFocus>
             </EditText>
