@@ -292,7 +292,7 @@ public class StaffTasks{
 	            Log.d("TAG","Now in StaffTasks, image size is:"+ getSizeInBytes(image));
 
 	    		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    			image.compress(CompressFormat.JPEG, 45, bos);
+    			image.compress(CompressFormat.JPEG, 90, bos);
     			byte[] data = bos.toByteArray();
     			try
     			{
