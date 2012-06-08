@@ -32,29 +32,7 @@
                 <FrameLayout android:id="@+id/shareFrame" android:layout_width="match_parent" android:layout_gravity="bottom" android:layout_height="wrap_content">
                     <ImageButton android:layout_width="wrap_content" android:background="@drawable/photo_button" android:layout_height="wrap_content" android:id="@+id/camera" android:src="@drawable/photo_button"></ImageButton>
                     <ImageButton android:layout_width="wrap_content" android:background="@drawable/share" android:layout_gravity="right" android:layout_height="wrap_content" android:id="@+id/share"></ImageButton>
-<FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal"  >
-
-                            <ImageButton
-                                android:id="@+id/catselect"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/categoryselector"
-                                android:textColor="#AAA"
-                                android:layout_gravity="center_horizontal"  />
-
-                            <TextView
-                                android:id="@+id/catText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center_vertical"
-                                android:paddingLeft="10dp"
-                                android:text="Do"
-                                android:textColor="#333" />
-
-                        </FrameLayout>
+                    <Spinner android:background="@drawable/categoryselector" android:layout_width="wrap_content" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:id="@+id/catselect"></Spinner>
                                         </FrameLayout>
             </FrameLayout>
         </LinearLayout>

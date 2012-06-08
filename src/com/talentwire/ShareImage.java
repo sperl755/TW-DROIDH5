@@ -22,23 +22,19 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShareImage extends Activity {
 	private ImageView image;
 	private Bitmap bitmap;
 	private ArrayAdapter adapter;
-	private ImageButton catselect;
-	private String selectedcat;
+	private Spinner catselect;
 
     public static ArrayList<String> topics = new ArrayList<String>(3);
     public static ArrayList<String> topids = new ArrayList<String>(3);
@@ -62,50 +58,11 @@ public class ShareImage extends Activity {
 	        final ImageView imageView = (ImageView) this.findViewById(R.id.image);
 	        final EditText postbox = (EditText) this.findViewById(R.id.postbox);
 	        ImageButton share = (ImageButton) this.findViewById(R.id.share);
+	        catselect = (Spinner) this.findViewById(R.id.catselect);
 	        image = (ImageView)this.findViewById(R.id.image);
-	        catselect = (ImageButton) this.findViewById(R.id.catselect);
-	        final TextView catText = (TextView)this.findViewById(R.id.catText);
-	        
-	        
-	        final Dialog subdialog=new Dialog(this);
-			 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			 
-	        catselect.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-	            	
-	    		 subdialog.setContentView(R.layout.subselectordialog);
-	       		 //subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	        adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
+	        catselect.setAdapter(adapter);
 
-	    		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
-	    		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
-	    		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
-
-	    		 doFrame.setOnClickListener(new View.OnClickListener() {
-	    	            public void onClick(View v) {
-	    	            	selectedcat = topids.get(0);
-	    	            	catText.setText("Do");
-	    	            	subdialog.cancel();
-	    	            }
-	    	        });
-	    		 trendFrame.setOnClickListener(new View.OnClickListener() {
-	    	            public void onClick(View v) {
-	    	            	selectedcat = topids.get(1);
-	    	            	catText.setText("Trend");
-	    	            	subdialog.cancel();
-	    	            }
-	    	        });
-	    		 mentorFrame.setOnClickListener(new View.OnClickListener() {
-	    	            public void onClick(View v) {
-	    	            	selectedcat = topids.get(2);
-	    	            	catText.setText("Mentor");
-	    	            	subdialog.cancel();
-
-	    	            }
-	    	        });
-	       		 subdialog.show();
-
-	    		 }
-	        });
 
 		    Intent intent = getIntent();
 		    String action = intent.getAction();
@@ -131,6 +88,7 @@ public class ShareImage extends Activity {
 		    
 
 	        
+	       runArrayAdapter();
 		   	
 		   postbox.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
@@ -144,13 +102,20 @@ public class ShareImage extends Activity {
 	        //adapter.
 	        share.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            		postImage(postbox.getText().toString(), selectedcat,bitmap);
+	            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),bitmap);
 	            	//finish();
 	            }
 	        });
 		    }
 		 }
-	 	
+	 		
+	 private void runArrayAdapter(){
+	        if (topics.size()!=0){
+	        for(int i=0; i<3;i++){
+	        	adapter.add(topics.get(i));
+	        }
+	        }
+	 }
 	 
 	 
 		    private void postImage(String topost, String topicid, Bitmap f){
@@ -226,6 +191,7 @@ public class ShareImage extends Activity {
 			        @Override
 			        protected void onPostExecute(Void result) {
 			        	dialog.dismiss();
+				        runArrayAdapter();
 			        }
 
 			    	

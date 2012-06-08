@@ -483,8 +483,10 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
-        ImageButton catselect = (ImageButton) dialog.findViewById(R.id.catselect);
-        final TextView catText = (TextView)dialog.findViewById(R.id.catText);
+        //ImageButton catselect = (ImageButton) dialog.findViewById(R.id.catselect);
+        final Spinner catselect = (Spinner) dialog.findViewById(R.id.catselect);
+
+//        final TextView catText = (TextView)dialog.findViewById(R.id.catText);
         
         
         postbox.setText("What are you working on?");
@@ -502,6 +504,18 @@ public class StaffActivity extends Activity  implements LocationListener {
         	Log.d("TAG","Custom Dialog with no image");
         }
         
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
+        catselect.setAdapter(adapter);
+        if (topics.size()!=0){
+        	for(int i=0; i<3;i++){
+        		adapter.add(topics.get(i));
+        		}
+        	} else {
+        	Toast.makeText(getApplicationContext(), "Please wait, loading subscriptions", 0).show();
+        	AsyncSubs subs = new AsyncSubs();
+        	subs.execute();
+        	Log.d("TAG","No subs, getting them async");
+        }
         
         /*
         new Dialog.Builder(StaffActivity.this)new DialogInterface.OnClickListener() {
@@ -510,46 +524,46 @@ public class StaffActivity extends Activity  implements LocationListener {
         		             startActivity(i);
         		  }
         		  */
-		 final Dialog subdialog=new Dialog(this);
-		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		 //final View subdialog = new View(this);
-		 catselect.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	
-    		 subdialog.setContentView(R.layout.subselectordialog);
-       		 //subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-    		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
-    		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
-    		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
-
-    		 doFrame.setOnClickListener(new View.OnClickListener() {
-    	            public void onClick(View v) {
-    	            	selectedcat = topids.get(0);
-    	            	catText.setText("Do");
-    	            	subdialog.cancel();
-    	            }
-    	        });
-    		 trendFrame.setOnClickListener(new View.OnClickListener() {
-    	            public void onClick(View v) {
-    	            	selectedcat = topids.get(1);
-    	            	catText.setText("Trend");
-    	            	subdialog.cancel();
-    	            }
-    	        });
-    		 mentorFrame.setOnClickListener(new View.OnClickListener() {
-    	            public void onClick(View v) {
-    	            	selectedcat = topids.get(2);
-    	            	catText.setText("Mentor");
-    	            	subdialog.cancel();
-
-    	            }
-    	        });
-       		 subdialog.show();
-
-    		 }
-
-        });
+//		 final Dialog subdialog=new Dialog(this);
+//		 subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		 //final View subdialog = new View(this);
+//		 catselect.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//            	
+//    		 subdialog.setContentView(R.layout.subselectordialog);
+//       		 //subdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//
+//    		 FrameLayout doFrame = (FrameLayout)subdialog.findViewById(R.id.doFrame);
+//    		 FrameLayout trendFrame = (FrameLayout)subdialog.findViewById(R.id.trendFrame);
+//    		 FrameLayout mentorFrame = (FrameLayout)subdialog.findViewById(R.id.mentorFrame);
+//
+//    		 doFrame.setOnClickListener(new View.OnClickListener() {
+//    	            public void onClick(View v) {
+//    	            	selectedcat = topids.get(0);
+//    	            	catText.setText("Do");
+//    	            	subdialog.cancel();
+//    	            }
+//    	        });
+//    		 trendFrame.setOnClickListener(new View.OnClickListener() {
+//    	            public void onClick(View v) {
+//    	            	selectedcat = topids.get(1);
+//    	            	catText.setText("Trend");
+//    	            	subdialog.cancel();
+//    	            }
+//    	        });
+//    		 mentorFrame.setOnClickListener(new View.OnClickListener() {
+//    	            public void onClick(View v) {
+//    	            	selectedcat = topids.get(2);
+//    	            	catText.setText("Mentor");
+//    	            	subdialog.cancel();
+//
+//    	            }
+//    	        });
+//       		 subdialog.show();
+//
+//    		 }
+//
+//        });
         
   
         if (topids.size()==0){
@@ -559,27 +573,27 @@ public class StaffActivity extends Activity  implements LocationListener {
         	Log.d("TAG","No subs, getting them async");
         }
         
-        if (selectedcat==null){
-        	selectedcat = selectedcat = topids.get(0);
-        	catText.setText("Do");
-        } else if (selectedcat==topids.get(0)){
-        	catText.setText(topics.get(0));
-        	catText.setText("Do");
-        } else if (selectedcat.equals(topids.get(1))){
-        	catText.setText(topics.get(1));
-        	catText.setText("Trend");
-        } else if (selectedcat.equals(topids.get(2))){
-        	catText.setText(topics.get(2));
-        	catText.setText("Mentor");
-        }
-        
+//        if (selectedcat==null){
+//        	selectedcat = selectedcat = topids.get(0);
+//        	catText.setText("Do");
+//        } else if (selectedcat==topids.get(0)){
+//        	catText.setText(topics.get(0));
+//        	catText.setText("Do");
+//        } else if (selectedcat.equals(topids.get(1))){
+//        	catText.setText(topics.get(1));
+//        	catText.setText("Trend");
+//        } else if (selectedcat.equals(topids.get(2))){
+//        	catText.setText(topics.get(2));
+//        	catText.setText("Mentor");
+//        }
+//        
 
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if (selected==null){
-                    post(postbox.getText().toString(), selectedcat);
+                    post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()));
             	} else if (selected!=null){
-            		postImage(postbox.getText().toString(), selectedcat,selected);
+            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected);
             	}
                 dialog.dismiss();
             }
