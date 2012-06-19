@@ -462,10 +462,17 @@ public class StaffActivity extends Activity  implements LocationListener {
 				  json_data = jresult.getJSONObject(i);
 				  json_data_level1 =json_data.getJSONObject("subscription");
 				  if (json_data_level1.getString("topic").equals("Trend") || json_data_level1.getString("topic").equals("Mentor")){
-				  String topic = json_data_level1.getString("topic");
+					  if (json_data_level1.getString("topic").equals("Trend")){
+						  String topic = "Stream";
+						  String topic_id = "null";
+						  topics.add(topic);
+						  topids.add(topic_id);
+					  } else {
+			      String topic = json_data_level1.getString("topic");
 				  String topic_id = json_data_level1.getString("topic_id");
 				  topics.add(topic);
 				  topids.add(topic_id);
+		          }
 				  }
 				  //Log.d("TAG", "TOPICS"+topic);
 			  }
