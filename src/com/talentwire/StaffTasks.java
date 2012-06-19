@@ -304,6 +304,19 @@ public class StaffTasks{
 	    		String boundary = "------WebKitFormBoundary4QuqLuM1cE5lMwCy";
 	            Log.d("TAG","Now in StaffTasks, image size is:"+ getSizeInBytes(image));
 
+//	        	SchemeRegistry schemeRegistry = new SchemeRegistry();
+//	    		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+//	    		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+//	    		 
+//	    		HttpParams paramz = new BasicHttpParams();
+//	    		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+//	    		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+//	    		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+//	    		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+//	    		 
+//	    		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+//	    		DefaultHttpClient client = new DefaultHttpClient(cm, paramz);
+	            
 	    		ByteArrayOutputStream bos = new ByteArrayOutputStream();
     			image.compress(CompressFormat.JPEG, 90, bos);
     			byte[] data = bos.toByteArray();
@@ -314,6 +327,7 @@ public class StaffTasks{
         			URL post_url = new URL("https://www.talentwire.me/apis/create_my_feed");
         			
         			HttpURLConnection feed_connection = (HttpURLConnection) post_url.openConnection();
+        			//feed_connection.
         			//feed_connection.setChunkedStreamingMode(0);
         			feed_connection.setDoOutput(true);//make a POST Method as defualt is GET
         			feed_connection.setRequestMethod("POST");
