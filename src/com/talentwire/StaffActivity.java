@@ -247,7 +247,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 			 */
 			//mWebView.loadUrl("https://m.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?mobile=true&header=no");
 			//mWebView.loadUrl("http://www.facebook.com/dialog/oauth?client_id=187212574660004&redirect_uri=https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
-			mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
+			
+			loadDashboard();
+			
 			//mWebView.loadUrl("https://www.talentwire.me/facebook_authenticate?header=no&mobile=true&display=touch");
 
 
@@ -312,7 +314,39 @@ public class StaffActivity extends Activity  implements LocationListener {
 			
 			}
 	 
-	 	private void startNotification(){
+	 	private void loadDashboard() {
+	 		 try{
+		         new Thread(){
+		             public void run() {
+		                 initializeApp();
+		                 uiHandler.post( new Runnable(){
+		                     @Override
+		                     public void run() {
+		                         if(isUpdateRequired){
+		                         }else{
+		                        	SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
+		                        	String key = prefs.getString("staffkey", null);
+		                        	Log.d("TAG","in loadDashboard staffkey is "+key);
+		                 			mWebView.loadUrl("https://www.talentwire.me/user/dashboard?session_key="+key+"&header=no");
+		                         }
+		                     }
+		                 } );
+		             }
+		             public void initializeApp(){
+		           	  while (StaffTasks.donelogin==null) {
+		           		  try {
+								sleep(1);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+		           	  }
+		             }
+		     }.start();
+		     }catch (Exception e) {}	 		
+		
+	}
+
+		private void startNotification(){
 	 		//createNotification();
 	 	}
 	 
@@ -772,6 +806,8 @@ public class StaffActivity extends Activity  implements LocationListener {
 				              public void initializeApp(){
 				            	  while (mWebView.getProgress()<69) {
 				            		  try {
+											Log.d("TAG","progress is "+mWebView.getProgress());
+
 										sleep(1000);
 									} catch (InterruptedException e) {
 										e.printStackTrace();
