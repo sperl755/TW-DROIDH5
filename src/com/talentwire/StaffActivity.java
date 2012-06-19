@@ -53,6 +53,8 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -328,6 +330,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 		                        	String key = prefs.getString("staffkey", null);
 		                        	Log.d("TAG","in loadDashboard staffkey is "+key);
 		                 			mWebView.loadUrl("https://www.talentwire.me/user/dashboard?session_key="+key+"&header=no");
+		        	            	checkLoading();
 		                         }
 		                     }
 		                 } );
@@ -521,6 +524,22 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
+        final TextView charCount = (TextView)dialog.findViewById(R.id.charCount);
+        //TextWatcher mTextEditorWatcher;
+         final TextWatcher mTextEditorWatcher = new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               //This sets a textview to the current length
+            	charCount.setText(String.valueOf(Math.abs(s.length()-500)));
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
+        };
+		postbox.addTextChangedListener(mTextEditorWatcher);
+
         //ImageButton catselect = (ImageButton) dialog.findViewById(R.id.catselect);
         final Spinner catselect = (Spinner) dialog.findViewById(R.id.catselect);
 
@@ -783,6 +802,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 	 public void checkLoading(){
 			if (counter==0){
 	      	  counter++;
+	      	  Log.d("TAG","Counter equals zero in checkLoading");
 			} else
 				
 			
