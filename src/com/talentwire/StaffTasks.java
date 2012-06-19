@@ -135,8 +135,21 @@ public class StaffTasks{
 		try {
 		URI url = new URI("https://talentwire.me/apis/user/"+key+"/get/subscriptions");
 		
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+		 
+		HttpParams paramz = new BasicHttpParams();
+		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+		 
+		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+		DefaultHttpClient client = new DefaultHttpClient(cm, paramz);
+		
 	    HttpGet get = new HttpGet(url);
-	    HttpClient client = new MyHttpClient(c);
+	    //HttpClient client = new MyHttpClient(c);
 	    ResponseHandler<String> responseHandler=new BasicResponseHandler();
 	    subs = client.execute(get, responseHandler);
 	    Log.d("TAG", "RESPONSE STRING FROM GET SUBS: "+subs);
@@ -299,6 +312,7 @@ public class StaffTasks{
     				SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
     				String key = prefs.getString("staffkey", null);
         			URL post_url = new URL("https://www.talentwire.me/apis/create_my_feed");
+        			
         			HttpURLConnection feed_connection = (HttpURLConnection) post_url.openConnection();
         			//feed_connection.setChunkedStreamingMode(0);
         			feed_connection.setDoOutput(true);//make a POST Method as defualt is GET
@@ -784,18 +798,18 @@ public static String getInfo(String facebook_key, Context c){
   		SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
 		Editor editor = prefs.edit();
 		
-//		SchemeRegistry schemeRegistry = new SchemeRegistry();
-//		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-//		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
-//		 
-//		HttpParams paramz = new BasicHttpParams();
-//		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
-//		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
-//		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
-//		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
-//		 
-//		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
-//		DefaultHttpClient httpClient = new DefaultHttpClient(cm, paramz);
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+		schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+		 
+		HttpParams paramz = new BasicHttpParams();
+		paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+		paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+		paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+		HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+		 
+		ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+		DefaultHttpClient client = new DefaultHttpClient(cm, paramz);
      
 	    try
 	    {
@@ -844,8 +858,7 @@ public static String getInfo(String facebook_key, Context c){
 		nameValuePairs.add(new BasicNameValuePair("facebook_uid", facebook_uid));
 		nameValuePairs.add(new BasicNameValuePair("facebook_session_key", facebook_key));
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			//httpClient
-			HttpClient client = new MyHttpClient(c);
+			//HttpClient client = new MyHttpClient(c);
 			ResponseHandler<String> responseHandler=new BasicResponseHandler();
 			responseBody = client.execute(post, responseHandler);
 			Log.d("TAG",responseBody);	
