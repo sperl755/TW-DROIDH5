@@ -20,7 +20,6 @@
                         android:id="@+id/postbox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:ems="10"
                         android:inputType="textMultiLine"
                         android:text="Describe your image.." />
@@ -30,5 +29,16 @@
                         <ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/share" android:id="@+id/share" android:layout_gravity="right"></ImageButton>
                     <Spinner android:background="@drawable/categoryselector" android:layout_width="wrap_content" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:id="@+id/catselect"></Spinner>
                     </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/charCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:text="500"
+                        android:textColor="#000"
+                        android:paddingTop="20dp"
+                        android:layout_gravity="center_vertical" />
+
                 </FrameLayout>
 </LinearLayout>

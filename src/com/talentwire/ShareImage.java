@@ -20,6 +20,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,6 +30,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShareImage extends Activity {
@@ -62,7 +65,21 @@ public class ShareImage extends Activity {
 	        image = (ImageView)this.findViewById(R.id.image);
 	        adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
 	        catselect.setAdapter(adapter);
+	        final TextView charCount = (TextView)this.findViewById(R.id.charCount);
+	        //TextWatcher mTextEditorWatcher;
+	         final TextWatcher mTextEditorWatcher = new TextWatcher() {
+	            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	            }
 
+	            public void onTextChanged(CharSequence s, int start, int before, int count) {
+	               //This sets a textview to the current length
+	            	charCount.setText(String.valueOf(Math.abs(s.length()-500)));
+	            }
+
+	            public void afterTextChanged(Editable s) {
+	            }
+	        };
+			postbox.addTextChangedListener(mTextEditorWatcher);
 
 		    Intent intent = getIntent();
 		    String action = intent.getAction();

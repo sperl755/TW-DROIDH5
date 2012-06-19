@@ -211,7 +211,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int both=0x7f050002;
         public static final int camera=0x7f05001d;
         public static final int catselect=0x7f05001a;
-        public static final int charCount=0x7f05001f;
+        public static final int charCount=0x7f05001e;
         public static final int checkProg=0x7f050010;
         public static final int doFrame=0x7f050020;
         public static final int firstweb=0x7f050011;
@@ -234,7 +234,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_progress=0x7f050014;
         public static final int pull_to_refresh_sub_text=0x7f050013;
         public static final int pull_to_refresh_text=0x7f050012;
-        public static final int scrollView1=0x7f05001e;
+        public static final int scrollView1=0x7f05001f;
         public static final int selectGallery=0x7f050007;
         public static final int share=0x7f05000c;
         public static final int shareFrame=0x7f05001c;
