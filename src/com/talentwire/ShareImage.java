@@ -39,8 +39,8 @@ public class ShareImage extends Activity {
 	private ArrayAdapter adapter;
 	private Spinner catselect;
 
-    public static ArrayList<String> topics = new ArrayList<String>(3);
-    public static ArrayList<String> topids = new ArrayList<String>(3);
+    public static ArrayList<String> topics = new ArrayList<String>(2);
+    public static ArrayList<String> topids = new ArrayList<String>(2);
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class ShareImage extends Activity {
 	         */
 	        
 	        if (StaffActivity.topids.size()!=0){
-	        for (int i=0;i<3;i++){
+	        for (int i=0;i<2;i++){
 	        	topids.add(StaffActivity.topids.get(i));
 	        	topics.add(StaffActivity.topics.get(i));
 	        	}
@@ -128,7 +128,7 @@ public class ShareImage extends Activity {
 	 		
 	 private void runArrayAdapter(){
 	        if (topics.size()!=0){
-	        for(int i=0; i<3;i++){
+	        for(int i=0; i<2;i++){
 	        	adapter.add(topics.get(i));
 	        }
 	        }
@@ -228,7 +228,7 @@ public class ShareImage extends Activity {
 						  for (int i=0; i<jresult.length(); i++) { 
 							  json_data = jresult.getJSONObject(i);
 							  json_data_level1 =json_data.getJSONObject("subscription");
-							  if (json_data_level1.getString("topic").equals("Do") || json_data_level1.getString("topic").equals("Trend") || json_data_level1.getString("topic").equals("Mentor")){
+							  if (json_data_level1.getString("topic").equals("Trend") || json_data_level1.getString("topic").equals("Mentor")){
 							  String topic = json_data_level1.getString("topic");
 							  String topic_id = json_data_level1.getString("topic_id");
 							  topics.add(topic);

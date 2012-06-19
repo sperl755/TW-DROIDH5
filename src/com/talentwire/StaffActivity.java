@@ -112,8 +112,8 @@ public class StaffActivity extends Activity  implements LocationListener {
     private static final int SELECT_PHOTO = 100;
     private String selectedcat;
 	  public static final int    GALLERY_REQUEST_CODE   = 2;
-    public static ArrayList<String> topics = new ArrayList<String>(3);
-    public static ArrayList<String> topids = new ArrayList<String>(3);
+    public static ArrayList<String> topics = new ArrayList<String>(2);
+    public static ArrayList<String> topids = new ArrayList<String>(2);
     private File directory;
     private SharedPreferences mPrefs;
 
@@ -461,7 +461,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 			  for (int i=0; i<jresult.length(); i++) { 
 				  json_data = jresult.getJSONObject(i);
 				  json_data_level1 =json_data.getJSONObject("subscription");
-				  if (json_data_level1.getString("topic").equals("Do") || json_data_level1.getString("topic").equals("Trend") || json_data_level1.getString("topic").equals("Mentor")){
+				  if (json_data_level1.getString("topic").equals("Trend") || json_data_level1.getString("topic").equals("Mentor")){
 				  String topic = json_data_level1.getString("topic");
 				  String topic_id = json_data_level1.getString("topic_id");
 				  topics.add(topic);
@@ -564,7 +564,7 @@ public class StaffActivity extends Activity  implements LocationListener {
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
         catselect.setAdapter(adapter);
         if (topics.size()!=0){
-        	for(int i=0; i<3;i++){
+        	for(int i=0; i<2;i++){
         		adapter.add(topics.get(i));
         		}
         	} else {
