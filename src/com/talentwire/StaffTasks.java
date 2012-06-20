@@ -214,14 +214,29 @@ public class StaffTasks{
 	        String key = prefs.getString("staffkey", null);
 	        String result = null;
 	        Log.d("TAG",key);
-		    HttpClient client = new MyHttpClient(c);
+		    //HttpClient client = new MyHttpClient(c);
+		    
+		    SchemeRegistry schemeRegistry = new SchemeRegistry();
+			schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+			schemeRegistry.register(new Scheme("https", new EasySSLSocketFactory(), 443));
+			 
+			HttpParams paramz = new BasicHttpParams();
+			paramz.setParameter(ConnManagerPNames.MAX_TOTAL_CONNECTIONS, 30);
+			paramz.setParameter(ConnManagerPNames.MAX_CONNECTIONS_PER_ROUTE, new ConnPerRouteBean(30));
+			paramz.setParameter(HttpProtocolParams.USE_EXPECT_CONTINUE, false);
+			HttpProtocolParams.setVersion(paramz, HttpVersion.HTTP_1_1);
+			 
+			ClientConnectionManager cm = new SingleClientConnManager(paramz, schemeRegistry);
+			DefaultHttpClient client = new DefaultHttpClient(cm, paramz);
 	    	        
 	    	        HttpPost post = new HttpPost("https://talentwire.me/apis/create_my_feed");
 	    	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	    	        nameValuePairs.add(new BasicNameValuePair("url_title", url_title));
 	    	        nameValuePairs.add(new BasicNameValuePair("url_description", url_description));
 	    	        nameValuePairs.add(new BasicNameValuePair("share_to_friend", share_to_friend));
-	    	        nameValuePairs.add(new BasicNameValuePair("post_to", post_to));
+	    	        if (!post_to.equals("null")){
+		    	        nameValuePairs.add(new BasicNameValuePair("post_to", post_to));
+	    	        }
 	    	        nameValuePairs.add(new BasicNameValuePair("url_address", url_address));
 	    	        nameValuePairs.add(new BasicNameValuePair("share_to_career_team", share_to_career_team));
 	    	        nameValuePairs.add(new BasicNameValuePair("feed", feed));
