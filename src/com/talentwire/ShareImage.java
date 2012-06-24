@@ -25,6 +25,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -65,6 +66,8 @@ public class ShareImage extends Activity {
 	        image = (ImageView)this.findViewById(R.id.image);
 	        adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
 	        catselect.setAdapter(adapter);
+	        CheckBox twitCheck = (CheckBox) this.findViewById(R.id.twitCheck);
+	        CheckBox fbCheck = (CheckBox) this.findViewById(R.id.fbCheck);
 	        final TextView charCount = (TextView)this.findViewById(R.id.charCount);
 	        //TextWatcher mTextEditorWatcher;
 	         final TextWatcher mTextEditorWatcher = new TextWatcher() {

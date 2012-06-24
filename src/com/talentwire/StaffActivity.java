@@ -75,6 +75,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -534,6 +535,8 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
+        CheckBox twitCheck = (CheckBox) dialog.findViewById(R.id.twitCheck);
+        CheckBox fbCheck = (CheckBox) dialog.findViewById(R.id.fbCheck);
         final TextView charCount = (TextView)dialog.findViewById(R.id.charCount);
         //TextWatcher mTextEditorWatcher;
          final TextWatcher mTextEditorWatcher = new TextWatcher() {
