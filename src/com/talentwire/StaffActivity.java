@@ -535,8 +535,8 @@ public class StaffActivity extends Activity  implements LocationListener {
         ImageView image = (ImageView)dialog.findViewById(R.id.image);
         ImageButton camera = (ImageButton) dialog.findViewById(R.id.camera);
         ImageButton share = (ImageButton) dialog.findViewById(R.id.share);
-        CheckBox twitCheck = (CheckBox) dialog.findViewById(R.id.twitCheck);
-        CheckBox fbCheck = (CheckBox) dialog.findViewById(R.id.fbCheck);
+        final CheckBox twitCheck = (CheckBox) dialog.findViewById(R.id.twitCheck);
+        final CheckBox fbCheck = (CheckBox) dialog.findViewById(R.id.fbCheck);
         final TextView charCount = (TextView)dialog.findViewById(R.id.charCount);
         //TextWatcher mTextEditorWatcher;
          final TextWatcher mTextEditorWatcher = new TextWatcher() {
@@ -661,9 +661,9 @@ public class StaffActivity extends Activity  implements LocationListener {
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if (selected==null){
-                    post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()));
+                    post(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),fbCheck.isChecked(),twitCheck.isChecked());
             	} else if (selected!=null){
-            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected);
+            		//postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),selected,fbCheck.isChecked(),twitCheck.isChecked());
             	}
                 dialog.dismiss();
             }
@@ -715,10 +715,10 @@ public class StaffActivity extends Activity  implements LocationListener {
         dialog.show();
 	}
 	 
-		private void post(String topost, String topicid){
+		private void post(String topost, String topicid, boolean fb, boolean tw){
 			//Photo p = null;
 			Log.d("TAG", topost+" was just posted in topic id "+topicid);
-			PostAsync post = new PostAsync(topost,topicid);
+			PostAsync post = new PostAsync(topost,topicid,fb,tw);
 			post.execute();
 			mWebView.reload();
 
@@ -859,14 +859,18 @@ public class StaffActivity extends Activity  implements LocationListener {
 	        ProgressDialog mProgressDialog;
 			private String topicid;
 			private String topost;
+			private Boolean facebook;
+			private Boolean twitter;
 	        @Override
 	        protected void onPostExecute(Void result) {
 	            mProgressDialog.dismiss();
 	        }
-	        public PostAsync(String topost, String topicid) {
+	        public PostAsync(String topost, String topicid, boolean fb, boolean tw) {
 	    		super();
 	    		this.topicid = topicid;
 	    		this.topost = topost;
+	    		this.facebook = fb;
+	    		this.twitter = tw;
 
 	    	}
 
@@ -877,7 +881,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 
 	        @Override
 	        protected Void doInBackground(Void... params) {
-				StaffTasks.createFeed("", "", "0", topicid, "", "0", topost, getApplicationContext());
+				StaffTasks.createFeed("", "", "0", topicid, "", "0", topost, getApplicationContext(),facebook,twitter);
 				
 	            return null;
 	        }

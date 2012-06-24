@@ -209,7 +209,7 @@ public class StaffTasks{
 	    return oath;
 	}
 	
-	   public static void createFeed(String url_title,String url_description,String share_to_friend,String post_to,String url_address,String share_to_career_team,String feed, Context c) {
+	   public static void createFeed(String url_title,String url_description,String share_to_friend,String post_to,String url_address,String share_to_career_team,String feed, Context c, Boolean facebook, Boolean twitter) {
 			SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(c); 
 	        String key = prefs.getString("staffkey", null);
 	        String result = null;
@@ -241,6 +241,9 @@ public class StaffTasks{
 	    	        nameValuePairs.add(new BasicNameValuePair("share_to_career_team", share_to_career_team));
 	    	        nameValuePairs.add(new BasicNameValuePair("feed", feed));
 	    	        nameValuePairs.add(new BasicNameValuePair("session_key", key));
+	    	        nameValuePairs.add(new BasicNameValuePair("facebook", facebook.toString()));
+	    	        nameValuePairs.add(new BasicNameValuePair("twitter", twitter.toString()));
+
 	 
 	    	        //nameValuePairs.add(new BasicNameValuePair("upload_file", upload_file));
 	    	        //nameValuePairs.add(new BasicNameValuePair("richmedia_type", richmedia_type));
