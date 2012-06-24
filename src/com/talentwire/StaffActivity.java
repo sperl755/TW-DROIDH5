@@ -226,9 +226,12 @@ public class StaffActivity extends Activity  implements LocationListener {
 						   urlNewString = urlNewString.substring(0, urlNewString.indexOf("#_=_"));
 						   Log.d("TAG", "CASE3");
 					   }
-					   else if (urlNewString.contains("users") || urlNewString.contains("feeds") || urlNewString.contains("conversation") || urlNewString.contains("messages") || urlNewString.contains("edit")){
+					   else if (urlNewString.contains("users") || urlNewString.contains("joinbeta") || urlNewString.contains("feeds") || urlNewString.contains("conversation") || urlNewString.contains("messages") || urlNewString.contains("edit")){
 						   urlNewString = urlNewString.concat("?header=no");
 						   Log.d("TAG", "CASE3");
+					   } else if (urlNewString.contains("user/dashboard") && !urlNewString.contains("header")) {
+						   urlNewString = urlNewString.concat("?header=no");
+						   Log.d("TAG", "CASE4");
 					   } 
 	
 					   view.loadUrl(urlNewString);
@@ -834,6 +837,7 @@ public class StaffActivity extends Activity  implements LocationListener {
 				            	  while (mWebView.getProgress()<69) {
 				            		  try {
 											Log.d("TAG","progress is "+mWebView.getProgress());
+											Log.d("TAG","url is "+mWebView.getUrl());
 
 										sleep(1000);
 									} catch (InterruptedException e) {
