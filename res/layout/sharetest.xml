@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
   android:background="@drawable/backgroundcolor"
 >
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -74,29 +74,19 @@
 </LinearLayout>
     </ScrollView>
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" >
 
-        <FrameLayout
+        <TableLayout
             android:id="@+id/shareFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom" >
-
-            <ImageButton
-                android:id="@+id/share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:background="@drawable/share" />
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+		    android:background="#EEE" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp" >
 
                 <CheckBox
@@ -114,8 +104,22 @@
                     android:text="Tweet"
                     android:textColor="#000"
                     android:textSize="11dp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <ImageButton
+                        android:id="@+id/share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:background="@drawable/share"
+                        android:layout_marginRight="10dp" />
+
+                </FrameLayout>
+
             </LinearLayout>
-        </FrameLayout>
-    </FrameLayout>
+        </TableLayout>
     
-</LinearLayout>
+</RelativeLayout>

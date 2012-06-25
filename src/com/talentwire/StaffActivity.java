@@ -517,9 +517,9 @@ public class StaffActivity extends Activity  implements LocationListener {
 	 }
 	 
 	 public void customDialog(final Bitmap selected){
-		 final Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+		 final Dialog dialog=new Dialog(this,android.R.style.Theme_Black_NoTitleBar);
 
-		 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		 //dialog.requestWindowFeature(Window.FEATURE);
 
 
 		if(selected!=null){
@@ -538,6 +538,9 @@ public class StaffActivity extends Activity  implements LocationListener {
         final CheckBox twitCheck = (CheckBox) dialog.findViewById(R.id.twitCheck);
         final CheckBox fbCheck = (CheckBox) dialog.findViewById(R.id.fbCheck);
         final TextView charCount = (TextView)dialog.findViewById(R.id.charCount);
+        
+        fbCheck.setChecked(true);
+        twitCheck.setChecked(true);
         //TextWatcher mTextEditorWatcher;
          final TextWatcher mTextEditorWatcher = new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

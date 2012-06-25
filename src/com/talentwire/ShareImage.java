@@ -24,6 +24,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ public class ShareImage extends Activity {
 	        }
 	        
 	        setContentView(R.layout.sharetest);
-
+	        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	        final ImageView imageView = (ImageView) this.findViewById(R.id.image);
 	        final EditText postbox = (EditText) this.findViewById(R.id.postbox);
 	        ImageButton share = (ImageButton) this.findViewById(R.id.share);
@@ -69,6 +70,8 @@ public class ShareImage extends Activity {
 	        final CheckBox twitCheck = (CheckBox) this.findViewById(R.id.twitCheck);
 	        final CheckBox fbCheck = (CheckBox) this.findViewById(R.id.fbCheck);
 	        final TextView charCount = (TextView)this.findViewById(R.id.charCount);
+	        fbCheck.setChecked(true);
+	        twitCheck.setChecked(true);
 	        //TextWatcher mTextEditorWatcher;
 	         final TextWatcher mTextEditorWatcher = new TextWatcher() {
 	            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
