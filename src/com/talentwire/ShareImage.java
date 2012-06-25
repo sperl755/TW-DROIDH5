@@ -66,8 +66,8 @@ public class ShareImage extends Activity {
 	        image = (ImageView)this.findViewById(R.id.image);
 	        adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item);
 	        catselect.setAdapter(adapter);
-	        CheckBox twitCheck = (CheckBox) this.findViewById(R.id.twitCheck);
-	        CheckBox fbCheck = (CheckBox) this.findViewById(R.id.fbCheck);
+	        final CheckBox twitCheck = (CheckBox) this.findViewById(R.id.twitCheck);
+	        final CheckBox fbCheck = (CheckBox) this.findViewById(R.id.fbCheck);
 	        final TextView charCount = (TextView)this.findViewById(R.id.charCount);
 	        //TextWatcher mTextEditorWatcher;
 	         final TextWatcher mTextEditorWatcher = new TextWatcher() {
@@ -122,7 +122,7 @@ public class ShareImage extends Activity {
 	        //adapter.
 	        share.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),bitmap);
+	            		postImage(postbox.getText().toString(), topids.get(catselect.getSelectedItemPosition()),bitmap,fbCheck.isChecked(),twitCheck.isChecked());
 	            	//finish();
 	            }
 	        });
@@ -138,8 +138,8 @@ public class ShareImage extends Activity {
 	 }
 	 
 	 
-		    private void postImage(String topost, String topicid, Bitmap f){
-			    PostImage post = new PostImage(f,topost,topicid);
+		    private void postImage(String topost, String topicid, Bitmap f, boolean fb, boolean twit){
+			    PostImage post = new PostImage(f,topost,topicid,fb,twit);
 			    post.execute();
 				
 			}
@@ -151,16 +151,21 @@ public class ShareImage extends Activity {
 					//private Bitmap image;
 					private String topost;
 					private String topicid;
+					private Boolean facebook;
+					private Boolean twitter;
 			        @Override
 			        protected void onPostExecute(Void result) {
 			            mProgressDialog.dismiss();
 			        }
 
-					public PostImage(Bitmap f, String topost, String topicid) {
+					public PostImage(Bitmap f, String topost, String topicid, boolean fb, boolean twit) {
 			    		super();
 			    		this.image = f;
 			    		this.topicid = topicid;
 			    		this.topost = topost;
+			    		this.facebook = fb;
+			    		this.twitter = twit;
+
 
 					}
 					@Override
@@ -171,7 +176,7 @@ public class ShareImage extends Activity {
 			        @Override
 			        protected Void doInBackground(Void... params) {
 						try {
-							StaffTasks.executeMultipartPost(image,topicid,topost,getApplicationContext());
+							StaffTasks.executeMultipartPost(image,topicid,topost,getApplicationContext(),facebook,twitter);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
