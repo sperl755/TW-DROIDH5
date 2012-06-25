@@ -65,6 +65,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
@@ -81,6 +82,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -570,6 +573,18 @@ public class StaffActivity extends Activity  implements LocationListener {
             	}
             }
         });
+           final ScrollView scrollView1 = (ScrollView) dialog.findViewById(R.id.scrollView1);
+
+        final RelativeLayout activityRootView = (RelativeLayout) dialog.findViewById(R.id.activityRoot);
+	   	activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+	   	    @Override
+	   	    public void onGlobalLayout() {
+	   	        int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+	   	        if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
+	   	        	scrollView1.fullScroll(View.FOCUS_DOWN);
+	   	        }
+	   	     }
+	   	});
         
         if (selected!=null){
         	image.setImageBitmap(selected);

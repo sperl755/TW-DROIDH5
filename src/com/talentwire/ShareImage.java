@@ -24,6 +24,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -108,8 +110,18 @@ public class ShareImage extends Activity {
 
 		    }
 
-		    
+		           final ScrollView scrollView1 = (ScrollView) this.findViewById(R.id.scrollView1);
 
+		   	  final View activityRootView = findViewById(R.id.activityRoot);
+		   	activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+		   	    @Override
+		   	    public void onGlobalLayout() {
+		   	        int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+		   	        if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
+		   	          scrollView1.fullScroll(View.FOCUS_DOWN);
+		   	        }
+		   	     }
+		   	});
 	        
 	       runArrayAdapter();
 		   	
