@@ -209,15 +209,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int both=0x7f050002;
-        public static final int camera=0x7f05001c;
+        public static final int camera=0x7f05001d;
         public static final int catselect=0x7f05001a;
-        public static final int charCount=0x7f05001b;
+        public static final int charCount=0x7f05001c;
         public static final int checkProg=0x7f050010;
         public static final int doFrame=0x7f050022;
-        public static final int fbCheck=0x7f05001f;
+        public static final int fbCheck=0x7f050020;
         public static final int firstweb=0x7f050011;
         public static final int frameLayout1=0x7f050008;
-        public static final int frameLayout2=0x7f05001d;
+        public static final int frameLayout2=0x7f05001e;
         public static final int gridview=0x7f050003;
         public static final int image=0x7f050017;
         public static final int imageView1=0x7f050009;
@@ -235,10 +235,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_progress=0x7f050014;
         public static final int pull_to_refresh_sub_text=0x7f050013;
         public static final int pull_to_refresh_text=0x7f050012;
-        public static final int scrollView1=0x7f050021;
+        public static final int scrollView1=0x7f05001b;
         public static final int selectGallery=0x7f050007;
         public static final int share=0x7f05000c;
-        public static final int shareFrame=0x7f05001e;
+        public static final int shareFrame=0x7f05001f;
         public static final int takePhoto=0x7f050006;
         public static final int talentwire=0x7f05000b;
         public static final int text=0x7f050027;
@@ -246,7 +246,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textView2=0x7f050024;
         public static final int textView3=0x7f050026;
         public static final int trendFrame=0x7f050023;
-        public static final int twitCheck=0x7f050020;
+        public static final int twitCheck=0x7f050021;
         public static final int webview=0x7f050004;
     }
     public static final class layout {

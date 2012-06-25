@@ -6,7 +6,19 @@
   android:layout_height="match_parent"
   android:background="@drawable/backgroundcolor"
 >
-     <FrameLayout android:layout_height="62px" android:id="@+id/frameLayout1" android:layout_width="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+ <FrameLayout android:layout_height="62px" android:id="@+id/frameLayout1" android:layout_width="match_parent">
         <ImageView android:scaleType="centerCrop" android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_gravity="top" android:paddingTop="0px" android:background="@drawable/backrepeat"></ImageView>
        <ImageButton android:layout_width="wrap_content" android:background="@drawable/tw_logofix" android:src="@drawable/tw_logofix" android:layout_gravity="center_horizontal|center_vertical" android:layout_marginBottom="1px" android:id="@+id/talentwire" android:adjustViewBounds="true" android:scaleType="fitXY" android:layout_height="18dp"></ImageButton>  
        </FrameLayout>
@@ -54,41 +66,56 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"
                     android:layout_marginRight="10dp"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
                     android:background="@drawable/categoryselector" />
 
             </FrameLayout>
+</LinearLayout>
+    </ScrollView>
 
-            <FrameLayout android:id="@+id/frameLayout2" android:layout_height="match_parent"  android:layout_marginRight="10dp" android:layout_marginTop="10dp" android:layout_width="match_parent">
-                <FrameLayout android:id="@+id/shareFrame" android:layout_width="match_parent" android:layout_gravity="bottom" android:layout_height="wrap_content">
-                    <ImageButton android:layout_width="wrap_content" 
-                        android:background="@drawable/share" 
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_height="wrap_content" 
-                        android:id="@+id/share"></ImageButton>
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:layout_marginLeft="5dp" >
+        <FrameLayout
+            android:id="@+id/shareFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" >
 
-                        <CheckBox
-                            android:id="@+id/fbCheck"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Share on Facebook"
-                            android:textColor="#000"
-                            android:textSize="11dp" />
+            <ImageButton
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/share" />
 
-                        <CheckBox
-                            android:id="@+id/twitCheck"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tweet"
-                            android:textColor="#000"
-                            android:textSize="11dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginLeft="5dp" >
 
-                    </LinearLayout>
+                <CheckBox
+                    android:id="@+id/fbCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Share on Facebook"
+                    android:textColor="#000"
+                    android:textSize="11dp" />
 
-                 </FrameLayout>
-            </FrameLayout>
+                <CheckBox
+                    android:id="@+id/twitCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tweet"
+                    android:textColor="#000"
+                    android:textSize="11dp" />
+            </LinearLayout>
+        </FrameLayout>
+    </FrameLayout>
+    
 </LinearLayout>
