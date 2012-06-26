@@ -362,8 +362,8 @@ public class StaffTasks{
         			String url_t = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"url_title\"\r\n\r\n"+"\r\n");
         			String url_d = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"url_description\"\r\n\r\n"+"\r\n");
         			String url_a = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"url_address\"\r\n\r\n"+"\r\n");
-        			String facebook = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"facebook\"\r\n\r\n"+"\r\n");
-        			String twitter = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"twitter\"\r\n\r\n"+"\r\n");
+        			String fb = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"facebook\"\r\n\r\n"+Facebook.toString() +"\r\n");
+        			String twit = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"twitter\"\r\n\r\n"+ Twitter.toString()+ "\r\n");
 
         			if (!topicid.equals("null")){
         			 topic_id = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"post_to\"\r\n\r\n" + topicid + "\r\n");
@@ -380,11 +380,11 @@ public class StaffTasks{
             			String image_part_3 = new String("--" + boundary + "--\r\n");
             			//feed_connection.setRequestProperty("Content-Length", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length())));
             			if (!topic_id.equals("null")){
-            				feed_connection.setFixedLengthStreamingMode(session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +  facebook.toString().length() + twitter.toString().length());
-                			Log.d("TAG", "CONTENT LEGNTH WITH IMG:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +  facebook.toString().length() + twitter.toString().length())));
+            				feed_connection.setFixedLengthStreamingMode(session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +  fb.length() + twit.length());
+                			Log.d("TAG", "CONTENT LEGNTH WITH IMG:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +   fb.length() + twit.length())));
             			} else {
-            			feed_connection.setFixedLengthStreamingMode(session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +  facebook.toString().length() + twitter.toString().length());
-            			Log.d("TAG", "CONTENT LEGNTH WITH IMG:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length()+ image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +  facebook.toString().length() + twitter.toString().length())));
+            			feed_connection.setFixedLengthStreamingMode(session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +   fb.length() + twit.length());
+            			Log.d("TAG", "CONTENT LEGNTH WITH IMG:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length()+ image_part_1.length() + image_part_2.length() + missing_link.length() + image_part_3.length() +data.length +   fb.length() + twit.length())));
             			}
             			ByteArrayOutputStream form_output 	= new ByteArrayOutputStream();
             			OutputStream form_stream 			= new BufferedOutputStream(feed_connection.getOutputStream());
@@ -398,8 +398,8 @@ public class StaffTasks{
             			if (!topic_id.equals("null")){
             			form_output.write(topic_id.getBytes());
             			}
-            			form_output.write(facebook.toString().getBytes());
-            			form_output.write(twitter.toString().getBytes());
+            			form_output.write(fb.getBytes());
+            			form_output.write(twit.getBytes());
         				form_output.write(image_part_1.getBytes());
         				form_output.write(image_part_2.getBytes());
             			form_output.write(data);
@@ -414,12 +414,12 @@ public class StaffTasks{
         			}else {
         				String image_part_1 = new String("--" + boundary + "\r\n" + "Content-Disposition: form-data; name=\"richmedia_type\"\r\n\r\n" + "0\r\n");
             			if (!topic_id.equals("null")){
-            				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + topic_id.length() + facebook.toString().length() + twitter.toString().length())));
-            				feed_connection.setRequestProperty("Content-Length NO IMG", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + facebook.toString().length() + twitter.toString().length())));
+            				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + topic_id.length() + fb.length() + twit.length())));
+            				feed_connection.setRequestProperty("Content-Length NO IMG", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + topic_id.length() + fb.length() + twit.length())));
             				
             			} else {
-            				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + facebook.toString().length() + twitter.toString().length() )));
-            				feed_connection.setRequestProperty("Content-Length NO IMG", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + facebook.toString().length() + twitter.toString().length() )));
+            				Log.d("TAG", "CONTENT LEGNTH:"+String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() + getSizeInBytes(image) + fb.length() + twit.length())));
+            				feed_connection.setRequestProperty("Content-Length NO IMG", String.valueOf((session_key.length() + feed.length() + sh_career.length() + sh_friend.length() + url_t.length() + url_d.length() + url_a.length() +  fb.length() + twit.length())));
             				
             			}
         				ByteArrayOutputStream form_output 	= new ByteArrayOutputStream();
@@ -428,8 +428,8 @@ public class StaffTasks{
             			form_output.write(feed.getBytes());
             			form_output.write(sh_career.getBytes());
             			form_output.write(sh_friend.getBytes());
-            			form_output.write(facebook.toString().getBytes());
-            			form_output.write(twitter.toString().getBytes());
+            			form_output.write(fb.getBytes());
+            			form_output.write(twit.getBytes());
             			form_output.write(url_t.getBytes());
             			form_output.write(url_d.getBytes());
             			form_output.write(url_a.getBytes());
