@@ -336,7 +336,7 @@ public class StaffTasks{
 //	    		DefaultHttpClient client = new DefaultHttpClient(cm, paramz);
 	            
 	    		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    			image.compress(CompressFormat.JPEG, 90, bos);
+    			image.compress(CompressFormat.JPEG, 60, bos);
     			byte[] data = bos.toByteArray();
     			String topic_id = null;
 
